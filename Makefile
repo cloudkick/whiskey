@@ -1,7 +1,7 @@
 CWD=`pwd`
 
 test:
-  # todo
+	./test/simple.sh
 
 example:
 	./bin/whiskey --tests "${CWD}/example/test-success.js ${CWD}/example/test-failure.js"
