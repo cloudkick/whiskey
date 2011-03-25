@@ -1,0 +1,32 @@
+{
+  "name": "whiskey",
+  "description": "A simple test runner for NodeJS.",
+  "version": "0.1.0",
+  "author": "",
+  "keywords": [ "whiskey", "tests", "test runner", "testing" ],
+  "homepage": "https://github.com/cloudkick/whiskey",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cloudkick/whiskey.git"
+  },
+  "modules": {
+    "whiskey": "./lib/whiskey"
+  },
+  "directories": {
+    "lib": "./lib",
+    "example": "./example",
+    "bin": "./bin"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+    "getopt": ">= 0.1.0",
+    "sprintf": ">= 0.1.1",
+    "async": ">= 0.1.4"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "main": "index",
+  "bin": "./bin/whiskey"
+}
