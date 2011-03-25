@@ -6,7 +6,7 @@ Whiskey is a simple test runner for NodeJS applications.
 Dependencies
 ===========
 
-- getopt
+- optparse-js
 - async
 - sprintf
 

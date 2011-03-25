@@ -20,7 +20,6 @@
   "scripts": {
   },
   "dependencies": {
-    "getopt": ">= 0.1.0",
     "sprintf": ">= 0.1.1",
     "async": ">= 0.1.4"
   },
