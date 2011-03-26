@@ -43,6 +43,7 @@ Changes
   * Add support for a global initialization file / function (`init` function in
     this file is run before all the tests in a main process and can perform
     some kind of global initialization)
+  * Add support for `--chdir` argument
 
 * 25.03.2011 - v0.1.0
   * Initial release (refactor module out from Cast and move it into a separate
