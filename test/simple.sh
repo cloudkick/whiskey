@@ -60,4 +60,20 @@ if [ ! $? -gt 0 ]; then
     exit 1
 fi
 
+# Test init file
+FOLDER_EXISTS=0
+rm -rf ${CWD}/example/test-123456
+${CWD}/bin/whiskey --init-file "${CWD}/example/init.js" --tests "${CWD}/example/test-success.js"
+
+if [ -d ${CWD}/example/test-123456 ]; then
+  FOLDER_EXISTS=1
+fi
+
+rm -rf ${CWD}/example/test-123456
+
+if [ $? -ne 0 ] || [ ${FOLDER_EXISTS} -ne 1 ]; then
+    echo "Test should pass but failed."
+    exit 1
+fi
+
 exit 0
