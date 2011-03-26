@@ -43,4 +43,21 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
+# Test relative path
+
+${CWD}/bin/whiskey --tests "../example/test-success.js"
+
+if [ $? -ne 0 ]; then
+    echo "Test should pass but failed."
+    exit 1
+fi
+
+# Test multiple files
+${CWD}/bin/whiskey --tests "${CWD}/example/test-success.js ${CWD}/example/test-failure.js"
+
+if [ ! $? -gt 0 ]; then
+    echo "Test should fail but it passed"
+    exit 1
+fi
+
 exit 0
