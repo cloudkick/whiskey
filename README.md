@@ -9,6 +9,9 @@ Features
 * Each test file is run in a separate process
 * Support for a test file timeout
 * Support for a "failfast mode" (runner exits after a first failure)
+* setUp / tearDown methods support
+* Support for a global initialization file / function which is run before all
+  the tests
 * Nicely formatted output (colors!)
 
 TODO
@@ -37,6 +40,9 @@ Changes
   * Add colors to the output
   * Now each test file must export all the test functions so the runner can
     iterate over them
+  * Add support for a global initialization file / function (`init` function in
+    this file is run before all the tests in a main process and can perform
+    some kind of global initialization)
 
 * 25.03.2011 - v0.1.0
   * Initial release (refactor module out from Cast and move it into a separate
