@@ -10,7 +10,7 @@ fi
 
 ${CWD}/bin/whiskey --tests "${CWD}/example/test-failure.js"
 
-if [ $? -ne 1 ]; then
+if [ ! $? -gt 0 ]; then
     echo "Test should fail but it passed"
     exit 1
 fi

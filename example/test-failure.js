@@ -17,6 +17,10 @@
 
 var assert = require('assert');
 
-(function() {
+exports['test_false_is_not_equal_true'] = function() {
   assert.ok(false);
-})();
+};
+
+exports['test_one_is_not_equal_two'] = function() {
+  assert.equal(1, 2);
+};
