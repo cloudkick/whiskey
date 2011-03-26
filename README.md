@@ -56,4 +56,4 @@ Usage
 Example
 =======
 
-For examples check the `examples` folder.
+For examples check the `example` folder.
