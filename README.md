@@ -18,7 +18,7 @@ TODO
 
 Screenshot
 ==========
-![Console output](https://img.skitch.com/20110326-j5rk1damqt4yr7adw5mjqbqjd.jpg)
+![Console output](https://img.skitch.com/20110326-1tmuf6xbax1m4gjy34fuch99q4.jpg)
 
 Dependencies
 ===========
