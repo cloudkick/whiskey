@@ -36,4 +36,11 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
+${CWD}/bin/whiskey --tests "${CWD}/example/test-setup-fail.js"
+
+if [ $? -ne 1 ]; then
+    echo "Only a single test should fail (setUp)"
+    exit 1
+fi
+
 exit 0
