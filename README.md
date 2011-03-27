@@ -18,6 +18,8 @@ TODO
 ====
 
 * Support for "TAP" output (http://testanything.org/wiki/index.php/Main_Page)
+* Handle uncaught exceptions better
+* Add tests for custom asserts commands and chdir
 
 Screenshot
 ==========
