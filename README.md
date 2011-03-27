@@ -18,8 +18,7 @@ TODO
 ====
 
 * Support for "TAP" output (http://testanything.org/wiki/index.php/Main_Page)
-* Handle uncaught exceptions better
-* Add tests for custom asserts commands and chdir
+* Add tests for custom asserts commands
 
 Screenshot
 ==========
@@ -34,6 +33,10 @@ Dependencies
 
 Changes
 =======
+
+* 27.03.2011 - v0.2.1:
+  * Handle uncaughtExceptions better
+  * Use lighter colors so test status output is more distinguishable
 
 * 26.03.2011 - v0.2.0
   * Add support for the failfast mode (runner exists after a first failure)
