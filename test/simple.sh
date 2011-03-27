@@ -44,7 +44,6 @@ if [ $? -ne 1 ]; then
 fi
 
 # Test relative path
-
 "${CWD}/bin/whiskey" --tests "../example/test-success.js"
 
 if [ $? -ne 0 ]; then
@@ -63,6 +62,7 @@ fi
 # Test init file
 FOLDER_EXISTS=0
 rm -rf ${CWD}/example/test-123456
+
 "${CWD}/bin/whiskey" --init-file "${CWD}/example/init.js" --tests "${CWD}/example/test-success.js"
 
 if [ -d ${CWD}/example/test-123456 ]; then
@@ -73,6 +73,14 @@ rm -rf ${CWD}/example/test-123456
 
 if [ $? -ne 0 ] || [ ${FOLDER_EXISTS} -ne 1 ]; then
     echo "Test should pass but failed."
+    exit 1
+fi
+
+# Uncaught exceptions
+"${CWD}/bin/whiskey" --tests "${CWD}/example/test-uncaught.js"
+
+if [ $? -ne 5 ]; then
+    echo "Test should fail but passed."
     exit 1
 fi
 
