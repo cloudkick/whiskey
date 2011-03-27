@@ -17,6 +17,8 @@
 
 var fs = require('fs');
 
-exports['init'] = function() {
-  fs.rmdirSync('../example/test-12346');
+exports['init'] = function(callback) {
+  fs.rmdir('../example/test-12346', function(err) {
+    callback();
+  });
 };

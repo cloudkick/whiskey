@@ -17,7 +17,7 @@
 
 var assert = require('assert');
 
-exports['setUp'] = function() {
+exports['setUp'] = function(callback) {
   assert.ok(false);
 };
 

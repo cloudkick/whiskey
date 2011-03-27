@@ -25,10 +25,11 @@ exports['not_called'] = function() {
   assert.ok(false);
 };
 
-exports['setUp'] = function() {
+exports['setUp'] = function(callback) {
   i = 9;
   called = true;
   n++;
+  callback();
 };
 
 exports['test_indexOf'] = function() {
@@ -51,11 +52,12 @@ exports['test_throw'] = function() {
   n++;
 };
 
-exports['tearDown'] = function() {
+exports['tearDown'] = function(callback) {
   assert.ok(called);
   assert.equal(n, 3);
 
   n++;
+  callback();
 };
 
 process.on('exit', function() {
