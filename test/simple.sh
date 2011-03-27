@@ -76,11 +76,26 @@ if [ $? -ne 0 ] || [ ${FOLDER_EXISTS} -ne 1 ]; then
     exit 1
 fi
 
-# Uncaught exceptions
+# test uncaught exceptions
 "${CWD}/bin/whiskey" --tests "${CWD}/example/test-uncaught.js"
 
 if [ $? -ne 5 ]; then
     echo "Test should fail but passed."
+    exit 1
+fi
+
+# Test chdir
+"${CWD}/bin/whiskey" --tests "${CWD}/example/test-chdir.js"
+
+if [ $? -ne 1 ]; then
+    echo "Test should fail but passed."
+    exit 1
+fi
+
+"${CWD}/bin/whiskey" --tests "${CWD}/example/test-chdir.js" --chdir "${CWD}/example/"
+
+if [ $? -ne 0 ]; then
+    echo "Test should pass but failed."
     exit 1
 fi
 
