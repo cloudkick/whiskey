@@ -22,8 +22,7 @@
   },
   "dependencies": {
     "sprintf": ">= 0.1.1",
-    "async": ">= 0.1.4",
-    "long-stack-traces": ">= 0.1.1"
+    "async": ">= 0.1.4"
   },
   "engines": {
     "node": ">= 0.4.0"
