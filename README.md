@@ -18,7 +18,7 @@ TODO
 ====
 
 * Support for "TAP" output (http://testanything.org/wiki/index.php/Main_Page)
-* Add tests for custom asserts commands
+* Add tests for the custom asserts commands
 
 Screenshot
 ==========
@@ -33,6 +33,13 @@ Dependencies
 
 Changes
 =======
+
+* 30.03.2011 - v0.2.2:
+  * Add timeout support to the init, setUp and tearDown function -
+   if the callback passed to one of those functions is not called in
+   `timeout` milliseconds, an exception is thrown and test execution
+   is aborted
+  * Test timeout is now properly reported as a failure
 
 * 27.03.2011 - v0.2.1:
   * Handle uncaughtExceptions better
@@ -66,7 +73,8 @@ Install it using npm:
 Usage
 =====
 
-    whiskey --tests <test files> [options]
+    whiskey [options] --tests <test files>
+
 
 Example
 =======
