@@ -37,6 +37,9 @@ Changes
 * 27.03.2011 - v0.2.1:
   * Handle uncaughtExceptions better
   * Use lighter colors so test status output is more distinguishable
+  * Fix bug with "cannot find module" exception not being properly reported
+  * Add support for per-test file init function / file
+  * Print stdout and stderr on failure
 
 * 26.03.2011 - v0.2.0
   * Add support for the failfast mode (runner exists after a first failure)

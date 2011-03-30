@@ -15,16 +15,10 @@
  * limitations under the License.
  */
 
-var assert = require('assert');
+var fs = require('fs');
 
-exports['setUp'] = function(callback) {
-  assert.ok(false);
-};
-
-exports['test_1'] = function() {
-  assert.ok(false);
-};
-
-exports['test_2'] = function() {
-  assert.ok(false);
+exports['init'] = function(callback) {
+  fs.rmdir('../example/test-12346', function(err) {
+    callback();
+  });
 };

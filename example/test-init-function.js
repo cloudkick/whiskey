@@ -15,16 +15,11 @@
  * limitations under the License.
  */
 
+var fs = require('fs');
 var assert = require('assert');
 
-exports['setUp'] = function(callback) {
-  assert.ok(false);
-};
-
-exports['test_1'] = function() {
-  assert.ok(false);
-};
-
-exports['test_2'] = function() {
-  assert.ok(false);
+exports['test_folder_exists'] = function() {
+  fs.mkdirSync('../example/test-12346', 0655, function(err) {
+    assert.ifError(err);
+  });
 };

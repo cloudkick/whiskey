@@ -17,6 +17,8 @@
 
 var fs = require('fs');
 
-exports['init'] = function() {
-  fs.mkdirSync('../example/test-123456', 0655);
+exports['init'] = function(callback) {
+  fs.mkdir('../example/test-123456', 0655, function(err) {
+    callback();
+  });
 };

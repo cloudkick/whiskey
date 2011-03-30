@@ -99,4 +99,20 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Test per test init function
+"${CWD}/bin/whiskey" --test-init-file "${CWD}/example/init-test.js" --tests "${CWD}/example/test-init-function.js ${CWD}/example/test-init-function.js" --chdir "${CWD}/example/"
+
+if [ $? -ne 0 ]; then
+    echo "Test should pass but failed."
+    exit 1
+fi
+
+# Second test should fail because in this case init function is called only once
+"${CWD}/bin/whiskey" --init-file "${CWD}/example/init-test.js" --tests "${CWD}/example/test-init-function.js ${CWD}/example/test-init-function.js" --chdir "${CWD}/example/"
+
+if [ $? -ne 1 ]; then
+    echo "Test should fail but passed."
+    exit 1
+fi
+
 exit 0
