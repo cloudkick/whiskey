@@ -8,10 +8,12 @@ Features
 
 * Each test file is run in a separate process
 * Support for a test file timeout
-* Support for a "failfast mode" (runner exits after a first failure)
-* setUp / tearDown methods support
-* Support for a global initialization file / function which is run before all
-  the tests
+* Support for a "failfast mode" (runner exits after a first failure / timeout)
+* setUp / tearDown function support
+* Support for a global initialization function which is run once before
+  all the tests
+* Support for a test initialization function which is run before running
+  the tests in a test file
 * Nicely formatted output (colors!)
 
 TODO
@@ -75,8 +77,22 @@ Usage
 
     whiskey [options] --tests <test files>
 
+#### Available options
 
-Example
-=======
+ **-t, --tests** - Whitespace separated list of test files to run  
+ **-i, --init-file** - A path to the initialization file which must export `init`
+ function which is called *once in the main process* before running the tests  
+ **-ti, --test-init-file** - A path to the initialization file which must export  
+ `init` function and it is called in a child process *before running the tests in
+ each test file*  
+ **-c, --chdir** - An optional path to which the child process will chdir to before
+ running the tests  
+ **-f, --failfaist** - Use this option to exit upon first failure / timeout  
 
-For examples check the `example` folder.
+Note: When specifying multiple test a list with the test paths must be quoted,
+for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
+
+Examples
+========
+
+For examples, check the `example` folder.
