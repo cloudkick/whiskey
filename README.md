@@ -36,6 +36,11 @@ Dependencies
 Changes
 =======
 
+* in development - v0.2.3:
+  * Better reporting on a test file timeout
+  * Properly report if a test file does not exist or some other
+    uncaught exception was thrown
+
 * 30.03.2011 - v0.2.2:
   * Add timeout support to the init, setUp and tearDown function -
    if the callback passed to one of those functions is not called in
