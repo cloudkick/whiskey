@@ -40,6 +40,8 @@ Changes
   * Better reporting on a test file timeout
   * Properly report if a test file does not exist or some other
     uncaught exception was thrown
+  * Fix a bug with output buffer not being fully flushed on exit
+    on OS X
 
 * 30.03.2011 - v0.2.2:
   * Add timeout support to the init, setUp and tearDown function -
