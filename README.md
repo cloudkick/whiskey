@@ -42,6 +42,7 @@ Changes
     uncaught exception was thrown
   * Fix a bug with output buffer not being fully flushed on exit
     on OS X
+  * add --print-stdout and --print-stderr option
 
 * 30.03.2011 - v0.2.2:
   * Add timeout support to the init, setUp and tearDown function -
