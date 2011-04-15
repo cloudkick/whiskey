@@ -36,7 +36,7 @@ Dependencies
 Changes
 =======
 
-* in development - v0.2.3:
+* 15.04.2011 - v0.2.3:
   * Better reporting on a test file timeout
   * Properly report if a test file does not exist or some other
     uncaught exception was thrown
