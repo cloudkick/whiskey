@@ -22,7 +22,8 @@
   },
   "dependencies": {
     "sprintf": ">= 0.1.1",
-    "async": ">= 0.1.4"
+    "async": ">= 0.1.4",
+    "magic-templates": "0.1.0"
   },
   "engines": {
     "node": ">= 0.4.0"

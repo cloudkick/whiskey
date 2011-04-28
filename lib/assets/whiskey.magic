@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title>Coverage report</title>
+    <link rel='stylesheet' href='style.css' type='text/css'>
+    <script type='text/javascript' src='jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='jquery.tablesorter.min.js'></script>
+    <script type='text/javascript' src='coverage_html.js'></script>
+    <script type='text/javascript' charset='utf-8'>
+        jQuery(document).ready(index_ready);
+    </script>
+</head>
+<body id='indexfile'>
+
+<div id='header'>
+    <div class='content'>
+        <h1>Coverage report:
+            <span class='pc_cov'>{{cov.coverage}}%</span>
+        </h1>
+    </div>
+</div>
+
+<div id='index'>
+    <table class='index'>
+        <thead>
+            {# The title='' attr doesn't work in Safari. #}
+            <tr class='tablehead' title='Click to sort'>
+                <th class='name left headerSortDown'>Module</th>
+                <th>statements</th>
+                <th>missing</th>
+                {% if arcs %}
+                <th>branches</th>
+                <th>partial</th>
+                {% endif %}
+                <th class='right'>coverage</th>
+            </tr>
+        </thead>
+        {# HTML syntax requires thead, tfoot, tbody #}
+        <tfoot>
+            <tr class='total'>
+                <td class='name left'>Total</td>
+                <td>{{cov.totalHits}}</td>
+                <td>{{cov.totalMisses}}</td>
+                {% if arcs %}
+                <td>{{totals.n_branches}}</td>
+                <td>{{totals.n_missing_branches}}</td>
+                {% endif %}
+                <td class='right'>{{cov.coverage}}%</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for file in cov.files %}
+            <tr class='file'>
+                <td class='name left'><a href='{{file.html_filename}}'>{{file.name}}</a></td>
+                <td>{{file.totalHits}}</td>
+                <td>{{file.totalMisses}}</td>
+                {% if arcs %}
+                <td>{{file.nums.n_branches}}</td>
+                <td>{{file.nums.n_missing_branches}}</td>
+                {% endif %}
+                <td class='right'>{{file.coverage}}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div id='footer'>
+    <div class='content'>
+        <p>
+            <a class='nav' href='{{__url__}}'>whiskey v{{version}}</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
