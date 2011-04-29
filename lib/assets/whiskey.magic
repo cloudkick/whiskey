@@ -52,7 +52,7 @@
         <tbody>
             {% for file in cov.files %}
             <tr class='file'>
-                <td class='name left'><a href='{{file.html_filename}}'>{{file.name}}</a></td>
+                <td class='name left'><a href='{{file.htmlName}}'>{{file.name}}</a></td>
                 <td>{{file.totalHits}}</td>
                 <td>{{file.totalMisses}}</td>
                 {% if arcs %}
