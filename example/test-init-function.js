@@ -15,11 +15,14 @@
  * limitations under the License.
  */
 
+var path = require('path');
 var fs = require('fs');
-var assert = require('assert');
 
-exports['test_folder_exists'] = function() {
-  fs.mkdirSync('../example/test-12346', 0655, function(err) {
+var dirPath = path.join(process.cwd(), 'example/test-123456');
+
+exports['test_folder_exists'] = function(test, assert) {
+  fs.mkdir(dirPath, 0655, function(err) {
     assert.ifError(err);
+    test.finish();
   });
 };

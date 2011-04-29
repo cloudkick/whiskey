@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-var assert = require('assert');
+exports['test_test_timeout_non_blocking'] = function(test, assert) {
+  setTimeout(function() {
+    assert.ok(true);
+    test.finish();
+  }, 50000);
 
-exports['test_test_timeout'] = function() {
-  var i = -1000000000;
-  while (i < 1000000000000);
   assert.ok(true);
 };

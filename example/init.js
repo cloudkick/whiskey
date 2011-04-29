@@ -15,10 +15,13 @@
  * limitations under the License.
  */
 
+var path = require('path');
 var fs = require('fs');
 
+var dirPath = path.join(process.cwd(), 'example/test-123456');
+
 exports['init'] = function(callback) {
-  fs.mkdir('../example/test-123456', 0655, function(err) {
+  fs.mkdir(dirPath, 0655, function(err) {
     callback();
   });
 };

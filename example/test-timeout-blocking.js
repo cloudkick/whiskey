@@ -15,23 +15,9 @@
  * limitations under the License.
  */
 
-var n = 0;
+exports['test_test_timeout_non_blocking'] = function(test, assert) {
+ var i = 0;
+ while (i < 1000000);
 
-exports['test_true_equals_true'] = function(test, assert) {
-  assert.ok(true);
-
-  setTimeout(function() {
-    n++;
-    test.finish();
-  }, 100);
-};
-
-exports['test_two_plus_two_equals_four'] = function(test, assert) {
-  assert.equal(2 + 2, 4);
-  test.finish();
-};
-
-exports['tearDown'] = function(test, assert) {
-  assert.ok(n === 1);
-  test.finish();
+ assert.ok(true);
 };

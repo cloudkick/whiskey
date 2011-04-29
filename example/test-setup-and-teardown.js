@@ -15,31 +15,32 @@
  * limitations under the License.
  */
 
-var assert = require('assert');
-
 var i = 0;
 var called = false;
 var n = 0;
 
-exports['not_called'] = function() {
+exports['not_called'] = function(test, assert) {
   assert.ok(false);
+  test.finish();
 };
 
-exports['setUp'] = function(callback) {
+exports['setUp'] = function(test, assert) {
   i = 9;
   called = true;
   n++;
-  callback();
+  test.finish();
 };
 
-exports['test_indexOf'] = function() {
+exports['test_indexOf'] = function(test, assert) {
   assert.ok(called);
   assert.equal('test'.indexOf('test'), 0);
-
-  n++;
+  setTimeout(function() {
+    n++;
+    test.finish();
+  }, 50);
 };
 
-exports['test_throw'] = function() {
+exports['test_throw'] = function(test, assert) {
   assert.ok(called);
 
   try {
@@ -50,17 +51,12 @@ exports['test_throw'] = function() {
   }
 
   n++;
+  test.finish();
 };
 
-exports['tearDown'] = function(callback) {
+exports['tearDown'] = function(test, assert) {
   assert.ok(called);
   assert.equal(n, 3);
 
-  n++;
-  callback();
+  test.finish();
 };
-
-process.on('exit', function() {
-  assert.equal(n, 4);
-  assert.ok(called);
-});

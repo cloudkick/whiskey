@@ -15,10 +15,13 @@
  * limitations under the License.
  */
 
+var path = require('path');
 var fs = require('fs');
 
+var dirPath = path.join(process.cwd(), 'example/test-123456');
+
 exports['init'] = function(callback) {
-  fs.rmdir('../example/test-12346', function(err) {
+  fs.rmdir(dirPath, function(err) {
     callback();
   });
 };

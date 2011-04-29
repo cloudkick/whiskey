@@ -16,8 +16,7 @@
  *
  */
 
-var assert = require('assert');
-
-exports['test_chdir'] = function() {
-  assert.ok(process.cwd().indexOf('example') !== -1)
+exports['test_chdir'] = function(test, assert) {
+  assert.ok(process.cwd().indexOf('example') !== -1);
+  test.finish();
 };

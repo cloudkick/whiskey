@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-var assert = require('assert');
-
-exports['test_false_is_not_equal_true'] = function() {
+exports['test_false_is_not_equal_true'] = function(test, assert) {
   assert.ok(false);
+  test.finish();
 };
 
-exports['test_one_is_not_equal_two'] = function() {
+exports['test_one_is_not_equal_two'] = function(test, assert) {
   assert.equal(1, 2);
+  test.finish();
 };

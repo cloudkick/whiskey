@@ -15,11 +15,10 @@
  * limitations under the License.
  */
 
-var assert = require('assert');
-
-exports['setUp'] = function(callback) {
+exports['setUp'] = function(test, assert) {
 };
 
-exports['test_one_equals_two'] = function() {
+exports['test_one_equals_two'] = function(test, assert) {
   assert.equal(1, 2);
+  test.finish();
 };

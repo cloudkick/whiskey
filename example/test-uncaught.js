@@ -18,22 +18,30 @@
 require.paths.unshift(__dirname);
 var someFile = require('some-file');
 
-exports['test_uncaught_exception'] = function() {
+exports['test_uncaught_exception'] = function(test, assert) {
   throw new Error('Testing uncaught exception');
+  // Line bellow won't be reached
+  test.finish();
 };
 
-exports['test_uncaught_exception_2'] = function() {
+exports['test_uncaught_exception_2'] = function(test, assert) {
   someFile.throwException();
+  // Line bellow won't be reached
+  test.finish();
 };
 
-exports['test_unknown_method'] = function() {
+exports['test_unknown_method'] = function(test, assert) {
   someFile.unknownMethod();
+  // Line bellow won't be reached
+  test.finish();
 };
 
-exports['test_uncaught_nested_functions'] = function() {
+exports['test_uncaught_nested_functions'] = function(test, assert) {
   someFile.throwNestedFunctions();
+  // Line bellow won't be reached
+  test.finish();
 };
 
-exports['test1_require_throws'] = function() {
+exports['test1_require_throws'] = function(test, assert) {
   require('timeout-throws.js');
 };

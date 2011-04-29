@@ -15,16 +15,17 @@
  * limitations under the License.
  */
 
-var assert = require('assert');
-
-exports['setUp'] = function(callback) {
+exports['setUp'] = function(test, assert) {
   assert.ok(false);
+  test.finish();
 };
 
-exports['test_1'] = function() {
+exports['test_1'] = function(test, assert) {
   assert.ok(false);
+  test.finish();
 };
 
-exports['test_2'] = function() {
+exports['test_2'] = function(test, assert) {
   assert.ok(false);
+  test.finish();
 };
