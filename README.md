@@ -10,8 +10,6 @@ Features
 * Support for a test file timeout
 * Support for a "failfast mode" (runner exits after a first failure / timeout)
 * setUp / tearDown function support
-* Support for a global initialization function which is run once before
-  all the tests
 * Support for a test initialization function which is run before running
   the tests in a test file
 * Nicely formatted output (colors!)
@@ -20,7 +18,6 @@ TODO
 ====
 
 * Support for "TAP" output (http://testanything.org/wiki/index.php/Main_Page)
-* Add tests for the custom asserts commands
 
 Screenshot
 ==========
@@ -35,6 +32,24 @@ Dependencies
 
 Changes
 =======
+
+* 29.04.2011 - v0.3.0:
+ * Refactor most of the internals to make the code more readable and more easy
+   to extend
+ * Communication between main and child processes now takes place over a
+   unix socket
+ * Add support for "Reporter" classes
+ * Removed the `--init-file` option
+
+Note: The test format has changed and it is not backward compatible with
+Whiskey 0.2.0.
+
+Now each test gets passed in a special `test` object and a custom `assert`
+module which must be used to perform assertions.
+
+`exports['test_some_func'] = function(test, assert)`
+
+...
 
 * 15.04.2011 - v0.2.3:
   * Better reporting on a test file timeout
@@ -83,19 +98,17 @@ Install it using npm:
 Usage
 =====
 
-    whiskey [options] --tests <test files>
+    whiskey [options] --tests "<test files>"
 
 #### Available options
 
- **-t, --tests** - Whitespace separated list of test files to run  
- **-i, --init-file** - A path to the initialization file which must export `init`
- function which is called *once in the main process* before running the tests  
- **-ti, --test-init-file** - A path to the initialization file which must export  
+ **-t, --tests** - Whitespace separated list of test files to run
+ **-ti, --test-init-file** - A path to the initialization file which must export
  `init` function and it is called in a child process *before running the tests in
- each test file*  
+ each test file*
  **-c, --chdir** - An optional path to which the child process will chdir to before
- running the tests  
- **-f, --failfaist** - Use this option to exit upon first failure / timeout  
+ running the tests
+ **-f, --failfaist** - Use this option to exit upon first failure / timeout
 
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
@@ -103,4 +116,31 @@ for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
 Examples
 ========
 
-For examples, check the `example` folder.
+A simple example (success):
+
+``` javascript
+var called = 0;
+
+exports['test_async_one_equals_one'] = function(test, assert) {
+  setTimeout(function() {
+    assert.equal(1, 1);
+    test.finish();
+  }, 1000);
+}
+
+exports['tearDown'] = function(test, assert) {
+  assert.equal(called, 1);
+  test.finish();
+}
+```
+
+A simple example (failure):
+
+``` javascript
+exports['test_two_equals_one'] = function(test, assert) {
+  assert.equal(2, 1);
+  test.finish();
+}
+```
+
+For more examples please check the `example` folder.
