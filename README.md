@@ -35,6 +35,8 @@ Dependencies
 * optparse-js
 * async
 * sprintf
+* rimraf
+* magic-templates
 * [node-jscoverage](https://github.com/Kami/node-jscoverage) (only required if `--coverage` option is used)
 
 Changes
