@@ -13,15 +13,20 @@ Features
 * Support for a test initialization function which is run before running
   the tests in a test file
 * Nicely formatted output (colors!)
+* Support for test coverage
 
 TODO
 ====
 
-* Support for "TAP" output (http://testanything.org/wiki/index.php/Main_Page)
+/
 
 Screenshot
 ==========
-![Console output](https://img.skitch.com/20110326-1tmuf6xbax1m4gjy34fuch99q4.jpg)
+![Console output (CLI test reporter)](https://img.skitch.com/20110501-m613pgd1g6fwmmqsk63myqc3hq.jpg)
+![Console output (TAP test reporter)](https://img.skitch.com/20110501-diktfnj1p2d836jb4tqfueiugx.jpg)
+![Code coverage #1 (HTML coverage reporter)](https://img.skitch.com/20110501-raptfh2hi5pnmuxamumm3igris.jpg)
+![Code coverage #2 (HTML coverage reporter)](https://img.skitch.com/20110501-tq97b5uutnxgh1bsc374a87gb1.jpg)
+![Code coverage (CLI coverage reporter)](https://img.skitch.com/20110501-jp1wcjrprxt7rbw7xfb2bejh27.jpg)
 
 Dependencies
 ===========
@@ -29,17 +34,24 @@ Dependencies
 * optparse-js
 * async
 * sprintf
+* node-jscoverage (only required if `--coverage` option is used)
 
 Changes
 =======
 
-* 29.04.2011 - v0.3.0:
+* 01.04.2011 - v0.3.0:
  * Refactor most of the internals to make the code more readable and more easy
    to extend
  * Communication between main and child processes now takes place over a
    unix socket
  * Add support for "Reporter" classes
- * Removed the `--init-file` option
+ * Remove the `--init-file` option
+ * User can now specify how many tests run at the same time (`--concurrency [NUM]`
+   option)
+ * Add a new "TAP" test reporter class (`--test-reporter tap`)
+ * Add test coverage support with support for text and HTML output (`--coverage`)
+ * User can now specify a module with custom assertion functions which are
+   passed to the each test (`--custom-assert-module MODULE_PATH`)
 
 Note: The test format has changed and it is not backward compatible with
 Whiskey 0.2.0.
