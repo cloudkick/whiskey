@@ -117,21 +117,21 @@ Usage
 
 #### Available options
 
- **-t, --tests** - Whitespace separated list of test files to run    
- **-ti, --test-init-file** - A path to the initialization file which must export
+ * **-t, --tests** - Whitespace separated list of test files to run
+ * **-ti, --test-init-file** - A path to the initialization file which must export
  `init` function and it is called in a child process *before running the tests in
- each test file    
- **-c, --chdir** - An optional path to which the child process will chdir to before
- running the tests    
- **--timeout [NUMBER]** - How long to wait for tests to complete before timing
- out    
- **--concurrency [NUMBER]** - Maximum number of tests which will run in parallel    
- **--print-stdout** - Print data which was sent to stdout    
- **--print-stderr** - Print data which was sent to stderr    
- **--test-reporter [cli,tap]** - Which test reporter to use (defaults to cli)    
- **--coverage** - Use this option to enable the test coverage    
- **--coverage-reporter [cli,html]** - Which coverage reporter to use (defaults to cli)    
- **--coverage-dir** - Directory where the coverage HTML report is saved    
+ each test file
+ * **-c, --chdir** - An optional path to which the child process will chdir to before
+ running the tests
+ * **--timeout [NUMBER]** - How long to wait for tests to complete before timing
+ out
+ * **--concurrency [NUMBER]** - Maximum number of tests which will run in parallel
+ * **--print-stdout** - Print data which was sent to stdout
+ * **--print-stderr** - Print data which was sent to stderr
+ * **--test-reporter [cli,tap]** - Which test reporter to use (defaults to cli)
+ * **--coverage** - Use this option to enable the test coverage
+ * **--coverage-reporter [cli,html]** - Which coverage reporter to use (defaults to cli)
+ * **--coverage-dir** - Directory where the coverage HTML report is saved
 
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
