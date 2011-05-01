@@ -63,7 +63,7 @@ module which must be used to perform assertions.
 
 ...
 
-* 15.04.2011 - v0.2.3:
+* 15.05.2011 - v0.2.3:
   * Better reporting on a test file timeout
   * Properly report if a test file does not exist or some other
     uncaught exception was thrown
