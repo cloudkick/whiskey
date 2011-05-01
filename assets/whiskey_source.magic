@@ -48,7 +48,8 @@
 <div id='footer'>
     <div class='content'>
         <p>
-            <a class='nav' href='index.html'>&#xab; index</a> &nbsp; &nbsp; <a class='nav' href='{{__url__}}'>whiskey v{{version}}</a>
+            <a class='nav' href='index.html'>&#xab; index</a> &nbsp; &nbsp; <a
+              class='nav' href='https://github.com/cloudkick/whiskey'>whiskey v{{version}}</a>
         </p>
     </div>
 </div>
