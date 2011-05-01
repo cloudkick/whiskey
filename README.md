@@ -18,7 +18,8 @@ Features
 TODO
 ====
 
-/
+* Also instrument code in the `node_modules` directory (need to modify
+  node-jscoverage to ignore shebang lines)
 
 Screenshots
 ==========
@@ -34,24 +35,25 @@ Dependencies
 * optparse-js
 * async
 * sprintf
-* node-jscoverage (only required if `--coverage` option is used)
+* [node-jscoverage](https://github.com/Kami/node-jscoverage) (only required if `--coverage` option is used)
 
 Changes
 =======
 
-* 01.04.2011 - v0.3.0:
+* 01.05.2011 - v0.3.0:
  * Refactor most of the internals to make the code more readable and more easy
-   to extend
- * Communication between main and child processes now takes place over a
-   unix socket
- * Add support for "Reporter" classes
- * Remove the `--init-file` option
- * User can now specify how many tests run at the same time (`--concurrency [NUM]`
-   option)
- * Add a new "TAP" test reporter class (`--test-reporter tap`)
- * Add test coverage support with support for text and HTML output (`--coverage`)
- * User can now specify a module with custom assertion functions which are
-   passed to the each test (`--custom-assert-module MODULE_PATH`)
+   to extend    
+ * Communication between the main and child processes now takes place over a
+   unix socket    
+ * Add support for "Reporter" classes    
+ * Remove the `--init-file` option    
+ * User can now specify a maximum number of async tests which will run at the
+   same time (`--concurrency [NUMBER]` option)    
+ * Add a new "TAP" test reporter class (`--test-reporter tap`)   
+ * Add test coverage support with support for text and HTML output (`--coverage` option)    
+ * User can now specify a module with custom assertion functions which are    
+   attached to the `assert` object and passed to the each test function
+   (`--custom-assert-module MODULE_PATH`)    
 
 Note: The test format has changed and it is not backward compatible with
 Whiskey 0.2.0.
@@ -59,11 +61,12 @@ Whiskey 0.2.0.
 Now each test gets passed in a special `test` object and a custom `assert`
 module which must be used to perform assertions.
 
-`exports['test_some_func'] = function(test, assert)`
-
+``` javascript
+exports['test_some_func'] = function(test, assert)`
 ...
+```
 
-* 15.05.2011 - v0.2.3:
+* 15.04.2011 - v0.2.3:
   * Better reporting on a test file timeout
   * Properly report if a test file does not exist or some other
     uncaught exception was thrown
@@ -163,4 +166,4 @@ exports['test_two_equals_one'] = function(test, assert) {
 }
 ```
 
-For more examples please check the `example` folder.
+For more examples please check the `example/` folder.
