@@ -42,18 +42,18 @@ Changes
 
 * 01.05.2011 - v0.3.0:
  * Refactor most of the internals to make the code more readable and more easy
-   to extend    
+   to extend
  * Communication between the main and child processes now takes place over a
-   unix socket    
- * Add support for "Reporter" classes    
- * Remove the `--init-file` option    
+   unix socket
+ * Add support for "Reporter" classes
+ * Remove the `--init-file` option
  * User can now specify a maximum number of async tests which will run at the
-   same time (`--concurrency [NUMBER]` option)    
- * Add a new "TAP" test reporter class (`--test-reporter tap`)   
- * Add test coverage support with support for text and HTML output (`--coverage` option)    
- * User can now specify a module with custom assertion functions which are    
+   same time (`--concurrency [NUMBER]` option)
+ * Add a new "TAP" test reporter class (`--test-reporter tap`)
+ * Add test coverage support with support for text and HTML output (`--coverage` option)
+ * User can now specify a module with custom assertion functions which are
    attached to the `assert` object and passed to the each test function
-   (`--custom-assert-module MODULE_PATH`)    
+   (`--custom-assert-module MODULE_PATH`)
 
 Note: The test format has changed and it is not backward compatible with
 Whiskey 0.2.0.
@@ -117,21 +117,21 @@ Usage
 
 #### Available options
 
- **-t, --tests** - Whitespace separated list of test files to run
+ **-t, --tests** - Whitespace separated list of test files to run    
  **-ti, --test-init-file** - A path to the initialization file which must export
  `init` function and it is called in a child process *before running the tests in
- each test file*
+ each test file    
  **-c, --chdir** - An optional path to which the child process will chdir to before
- running the tests
+ running the tests    
  **--timeout [NUMBER]** - How long to wait for tests to complete before timing
- out
- **--concurrency [NUMBER]** - Maximum number of tests which will run in parallel
- **--print-stdout** - Print data which was sent to stdout
- **--print-stderr** - Print data which was sent to stderr
- **--test-reporter [cli,tap]** - Which test reporter to use (defaults to cli)
- **--coverage** - Use this option to enable the test coverage
- **--coverage-reporter [cli,html]** - Which coverage reporter to use (defaults to cli)
- **--coverage-dir** - Directory where the coverage HTML report is saved
+ out    
+ **--concurrency [NUMBER]** - Maximum number of tests which will run in parallel    
+ **--print-stdout** - Print data which was sent to stdout    
+ **--print-stderr** - Print data which was sent to stderr    
+ **--test-reporter [cli,tap]** - Which test reporter to use (defaults to cli)    
+ **--coverage** - Use this option to enable the test coverage    
+ **--coverage-reporter [cli,html]** - Which coverage reporter to use (defaults to cli)    
+ **--coverage-dir** - Directory where the coverage HTML report is saved    
 
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
