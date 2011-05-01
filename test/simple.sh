@@ -139,4 +139,21 @@ if [ $? -ne 1 ]; then
     echo "1 test should fail (tearDown timeout)"
     exit 1
 fi
+
+"${CWD}/bin/whiskey" --timeout 2000 --tests "${CWD}/example/test-custom-assert-functions.js"
+
+if [ $? -ne 2 ]; then
+    echo "2 tests should fail"
+    exit 1
+fi
+
+"${CWD}/bin/whiskey" --timeout 2000 \
+ --tests "${CWD}/example/test-custom-assert-functions.js" \
+ --custom-assert-module "${CWD}/example/custom-assert-functions.js"
+
+if [ $? -ne 1 ]; then
+    echo "1 test should fail"
+    exit 1
+fi
+
 exit 0
