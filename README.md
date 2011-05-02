@@ -42,6 +42,11 @@ Dependencies
 Changes
 =======
 
+* 02.05.2011 - v0.3.1:
+ * Capture the child process stdout and stderr in the main process instead of
+   monkey patching the `process.stdout` and `process.stderr` in the child
+   process
+
 * 01.05.2011 - v0.3.0:
  * Refactor most of the internals to make the code more readable and more easy
    to extend
