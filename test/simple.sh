@@ -156,4 +156,11 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
+"${CWD}/example/test-stdout-and-stderr-is-captured-on-timeout.js"
+
+if [ $? -ne 0 ]; then
+    echo "test file stdout and stderr was not properly captured during test timeout"
+    exit 1
+fi
+
 exit 0
