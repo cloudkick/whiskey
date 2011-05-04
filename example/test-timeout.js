@@ -13,7 +13,22 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+*/
+
+exports['test_success_1'] = function(test, assert) {
+  assert.ok(true);
+  test.finish();
+};
+
+exports['test_success_2'] = function(test, assert) {
+  assert.ok(true);
+  test.finish();
+};
+
+exports['test_success_3'] = function(test, assert) {
+  assert.ok(true);
+  test.finish();
+};
 
 exports['test_test_timeout_non_blocking'] = function(test, assert) {
   setTimeout(function() {

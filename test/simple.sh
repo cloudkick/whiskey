@@ -135,7 +135,7 @@ fi
 # Test tearDown function timeout (tearDown function .finish() is not called)
 "${CWD}/bin/whiskey" --timeout 2000 --tests "${CWD}/example/test-teardown-timeout.js" --chdir "${CWD}/example/"
 
-if [ $? -ne 1 ]; then
+if [ $? -ne 2 ]; then
     echo "1 test should fail (tearDown timeout)"
     exit 1
 fi
