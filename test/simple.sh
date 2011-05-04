@@ -163,4 +163,13 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Verify that when a test file timeout the tests which haven't time out are
+# reported properly
+"${CWD}/example/test-succeeded-tests-are-reported-on-timeout.js"
+
+if [ $? -ne 0 ]; then
+    echo "succeeded tests were not reported properly upon a test file timeout"
+    exit 1
+fi
+
 exit 0
