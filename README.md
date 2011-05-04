@@ -44,6 +44,11 @@ Changes
 
 * in development:
   * Allow user to pass in `--encoding` and `--exclude` option to jscoverage
+  * When a test file times out, print the results for all the tests in this file
+    which didn't time out
+  * Refactor some of the internals so the results are now reported back to the
+    main process after each tests completes instead of reporting them back when all
+    the tests in a single file complete
 
 * 02.05.2011 - v0.3.1:
  * Capture the child process stdout and stderr in the main process instead of
