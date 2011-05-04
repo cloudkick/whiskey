@@ -172,4 +172,16 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Verify that coverage works properly
+if [ "$(which jscoverage)" ]; then
+  "${CWD}/example/test-jscoverage.js"
+
+  if [ $? -ne 0 ]; then
+      echo "coverage does not work properly"
+      exit 1
+  fi
+else
+  echo 'jscoverage not installed, skipping coverage tests'
+fi
+
 exit 0
