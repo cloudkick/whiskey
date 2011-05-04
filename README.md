@@ -42,6 +42,9 @@ Dependencies
 Changes
 =======
 
+* in development:
+  * Allow user to pass in `--encoding` and `--exclude` option to jscoverage
+
 * 02.05.2011 - v0.3.1:
  * Capture the child process stdout and stderr in the main process instead of
    monkey patching the `process.stdout` and `process.stderr` in the child
