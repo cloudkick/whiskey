@@ -184,4 +184,14 @@ else
   echo 'jscoverage not installed, skipping coverage tests'
 fi
 
+# Make sure that the child which blocks after call .finish() is killed and
+# timeout properly reported
+"${CWD}/bin/whiskey" --timeout 1000 \
+ --tests "${CWD}/example/est-timeout-after-finish.js"
+
+if [ $? -ne 1 ]; then
+    echo "1 test should timeout"
+    exit 1
+fi
+
 exit 0
