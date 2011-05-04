@@ -42,13 +42,16 @@ Dependencies
 Changes
 =======
 
-* in development:
+* 04.05.2011 - v0.3.2:
   * Allow user to pass in `--encoding` and `--exclude` option to jscoverage
   * When a test file times out, print the results for all the tests in this file
     which didn't time out
   * Refactor some of the internals so the results are now reported back to the
-    main process after each tests completes instead of reporting them back when all
+    main process after each test completes instead of reporting them back when all
     the tests in a single file complete
+  * Clear the timeout and report the tests result in the child exit handler and
+    not after all the tests have called `.finish()`, because it's possible that
+    user calls .finish() and blocks afterwards
 
 * 02.05.2011 - v0.3.1:
  * Capture the child process stdout and stderr in the main process instead of
