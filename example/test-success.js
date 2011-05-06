@@ -26,9 +26,9 @@ exports['test_true_equals_true'] = function(test, assert) {
   }, 100);
 };
 
-exports['test_two_plus_two_equals_four'] = function(test, assert) {
+exports['test_two_plus_two_equals_four'] = function(done, assert) {
   assert.equal(2 + 2, 4);
-  test.finish();
+  done();
 };
 
 exports['tearDown'] = function(test, assert) {
