@@ -187,7 +187,7 @@ fi
 # Make sure that the child which blocks after call .finish() is killed and
 # timeout properly reported
 "${CWD}/bin/whiskey" --timeout 1000 \
- --tests "${CWD}/example/est-timeout-after-finish.js"
+ --tests "${CWD}/example/test-timeout-after-finish.js"
 
 if [ $? -ne 1 ]; then
     echo "1 test should timeout"
