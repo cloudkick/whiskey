@@ -194,4 +194,12 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
+# Scope leaks test (sequential mode)
+"${CWD}/example/test-leaks.js"
+
+if [ $? -ne 0 ]; then
+    echo "scope leaks were not reported properly"
+    exit 1
+fi
+
 exit 0
