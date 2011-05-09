@@ -8,12 +8,12 @@ Features
 
 * Each test file is run in a separate process
 * Support for a test file timeout
-* Support for a "failfast mode" (runner exits after a first failure / timeout)
 * setUp / tearDown function support
 * Support for a test initialization function which is run before running
   the tests in a test file
 * Nicely formatted output (colors!)
-* Support for test coverage
+* Support for test coverage (html and text output)
+* Scope leaks reporting
 
 TODO
 ====
@@ -41,6 +41,12 @@ Dependencies
 
 Changes
 =======
+
+* in development:
+  * Make test object a function and allow users to directly call this function
+    to signal end of the test
+    [Wade Simmons]
+  * Add support for scope leaks reporting (`--scope-leaks` option)
 
 * 04.05.2011 - v0.3.2:
   * Allow user to pass in `--encoding` and `--exclude` option to jscoverage
