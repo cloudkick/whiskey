@@ -12,7 +12,7 @@ Features
 * Support for a test initialization function which is run before running
   the tests in a test file
 * Nicely formatted output (colors!)
-* Support for test coverage (html and text output)
+* Support for test coverage
 * Scope leaks reporting
 
 TODO
@@ -86,7 +86,7 @@ Now each test gets passed in a special `test` object and a custom `assert`
 module which must be used to perform assertions.
 
 ``` javascript
-exports['test_some_func'] = function(test, assert)`
+exports['test_some_func'] = function(test, assert) {
 ...
 ```
 
