@@ -21,6 +21,4 @@ exec(sprintf('%s/bin/whiskey --tests %s/example/test-success-with-coverage.js --
     }
 
     process.exit(0);
-  });
-
-
+});
