@@ -194,7 +194,7 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
-# Scope leaks test (sequential mode)
+# Scope leaks test (sequential and parallel mode)
 "${CWD}/example/test-leaks.js"
 
 if [ $? -ne 0 ]; then
