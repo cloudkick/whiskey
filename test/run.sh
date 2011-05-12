@@ -202,4 +202,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo ""
+echo "* * * Whiskey test suite PASSED. * * *"
 exit 0
