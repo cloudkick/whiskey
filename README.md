@@ -42,7 +42,7 @@ Dependencies
 Changes
 =======
 
-* in development:
+* 17.05.2011 - v0.3.3:
   * Make test object a function and allow users to directly call this function
     to signal end of the test
     [Wade Simmons]
