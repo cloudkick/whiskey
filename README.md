@@ -42,6 +42,10 @@ Dependencies
 Changes
 =======
 
+* in development:
+  * When reporting the test results print the whole path to the test file
+    instead of just a file name
+
 * 17.05.2011 - v0.3.3:
   * Make test object a function and allow users to directly call this function
     to signal end of the test
