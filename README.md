@@ -175,6 +175,7 @@ var called = 0;
 exports['test_async_one_equals_one'] = function(test, assert) {
   setTimeout(function() {
     assert.equal(1, 1);
+    called++;
     test.finish();
   }, 1000);
 }
