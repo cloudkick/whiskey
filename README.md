@@ -147,7 +147,7 @@ Usage
  running the tests
  * **--timeout [NUMBER]** - How long to wait for tests to complete before timing
  out
- * **--concurrency [NUMBER]** - Maximum number of tests which will run in parallel
+ * **--concurrency [NUMBER]** - Maximum number of tests which will run in parallel (defaults to 100)
  * **--print-stdout** - Print data which was sent to stdout
  * **--print-stderr** - Print data which was sent to stderr
  * **--test-reporter [cli,tap]** - Which test reporter to use (defaults to cli)
