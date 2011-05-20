@@ -24,6 +24,7 @@ Dependencies
 * sprintf
 * rimraf
 * magic-templates
+* terminal
 * [node-jscoverage](https://github.com/Kami/node-jscoverage) (only required if `--coverage` option is used)
 
 Changes

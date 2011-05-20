@@ -24,7 +24,8 @@
     "sprintf": ">= 0.1.1",
     "async": ">= 0.1.9",
     "magic-templates": "= 0.1.0",
-    "rimraf": "= 1.0.1"
+    "rimraf": "= 1.0.1",
+    "terminal": "= 0.1.2"
   },
   "engines": {
     "node": ">= 0.4.0"
