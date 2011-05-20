@@ -29,7 +29,7 @@ Dependencies
 Changes
 =======
 
-For changes please see `CHANGES` file.
+For changes please see `CHANGES.md` file.
 
 Installation
 ============
