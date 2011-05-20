@@ -55,6 +55,7 @@ Usage
  running the tests
  * **--timeout [NUMBER]** - How long to wait for tests to complete before timing
  out
+ * **--no-styles** - Don't use styles and colors
  * **--concurrency [NUMBER]** - Maximum number of tests which will run in parallel (defaults to 100)
  * **--print-stdout** - Print data which was sent to stdout
  * **--print-stderr** - Print data which was sent to stderr
