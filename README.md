@@ -6,14 +6,15 @@ Whiskey is a simple test runner for NodeJS applications.
 Features
 ========
 
-* Each test file is run in a separate process
+* Each test file runs isolated in a separate process
+* By default multiple asynchronous tests run in parallel
+* Support for running tests in a sequential mode (only a single test runs at once)
+* Support for a test initialization function which is run before running the tests in a test file
 * Support for a test file timeout
 * setUp / tearDown function support
-* Support for a test initialization function which is run before running
-  the tests in a test file
-* Nicely formatted output (colors!)
-* Support for test coverage
-* Scope leaks reporting
+* Nicely formatted reports (colors!)
+* Support for code coverage (cli reporter, html reporter)
+* Support for reporting variables which have leaked into a global scope
 
 Screenshots
 ==========
