@@ -23,6 +23,14 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
+"${CWD}/bin/whiskey" --failfast --timeout 500 \
+  --tests "${CWD}/example/test-timeout.js ${CWD}/example/test-failure.js ${CWD}/example/test-timeout.js"
+
+if [ $? -ne 1 ]; then
+    echo "1 test should fail"
+    exit 1
+fi
+
 "${CWD}/bin/whiskey" --timeout 1000 --tests "${CWD}/example/test-timeout.js"
 
 if [ ! $? -eq 1 ]; then
