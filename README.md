@@ -74,8 +74,8 @@ Usage
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
 
-Examples
-========
+Test File Examples
+==================
 
 A simple example (success):
 
