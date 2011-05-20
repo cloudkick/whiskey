@@ -15,12 +15,6 @@ Features
 * Support for test coverage
 * Scope leaks reporting
 
-TODO
-====
-
-* Also instrument code in the `node_modules` directory (need to modify
-  node-jscoverage to ignore shebang lines)
-
 Screenshots
 ==========
 ![Console output (CLI test reporter)](https://img.skitch.com/20110501-m613pgd1g6fwmmqsk63myqc3hq.jpg)
@@ -160,6 +154,9 @@ Usage
  * **--coverage** - Use this option to enable the test coverage
  * **--coverage-reporter [cli,html]** - Which coverage reporter to use (defaults to cli)
  * **--coverage-dir** - Directory where the coverage HTML report is saved
+ * **--scope-leaks** - Record which variables were leaked into a global scope
+ * **--scope-leaks-reporter [cli]** - Which scope leak reporter to use (defauls
+   to cli)
 
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
