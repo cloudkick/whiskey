@@ -106,3 +106,43 @@ exports['test_two_equals_one'] = function(test, assert) {
 ```
 
 For more examples please check the `example/` folder.
+
+Troubleshooting
+===============
+
+1. I use `long-stack-straces` module in my own code and all of the tests get
+reported as succeeded
+
+Long stack traces modules intercepts the default Error object and throws a custom
+one. The problem with this is that Whiskey internally relies on attaching the
+test name to the `Error` object so it can figure out to which test the exception
+belongs. long-stack-traces throws a custom Error object and as a consequence test
+name attribute gets lost so Whiskey thinks your test didn't throw any exceptions.
+
+The solution for this problem is to disable `long-stack-trace` module when running
+the tests. This shouldn't be a big deal, because Whiskey internally already uses
+`long-stack-traces` module which means that you will still get long stack traces
+in the exceptions which were thrown in your tests.
+
+2. My test gets reported as "timeout" instead of "failure"
+
+If your test gets reported as "timeout" instead of "failure" your test code most
+likely looks similar to the one bellow:
+
+```javascript
+exports["test failure"] = function(test, assert){
+  setTimeout(function() {
+    throw "blaaaaah";
+    test.finish();
+  },200);
+};
+```
+
+The problem with this is that if you run tests in parallel (by default Whiskey
+runs with `--concurrency 100` option) and you don't use a custom assert object
+which gets passed to each test function, Whiskey can't figure out to which test
+the exception belongs. As a consequence, the test is reported as "timeout" and
+the exception is reported as "uncaught".
+
+The solution for this problem is to run the tests with the `--sequential` option.
+This will tell Whiskey to run only a single test at once.
