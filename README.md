@@ -34,8 +34,10 @@ For changes please see `CHANGES.md` file.
 Installation
 ============
 
-Install it using npm:
-    npm install whiskey
+Install it using npm: 
+```
+npm install whiskey
+```
 
 Usage
 =====
