@@ -16,14 +16,6 @@ Features
 * Support for code coverage (cli reporter, html reporter)
 * Support for reporting variables which have leaked into a global scope
 
-Screenshots
-==========
-![Console output (CLI test reporter)](https://img.skitch.com/20110501-m613pgd1g6fwmmqsk63myqc3hq.jpg)
-![Console output (TAP test reporter)](https://img.skitch.com/20110501-diktfnj1p2d836jb4tqfueiugx.jpg)
-![Code coverage #1 (HTML coverage reporter)](https://img.skitch.com/20110501-raptfh2hi5pnmuxamumm3igris.jpg)
-![Code coverage #2 (HTML coverage reporter)](https://img.skitch.com/20110501-tq97b5uutnxgh1bsc374a87gb1.jpg)
-![Code coverage (CLI coverage reporter)](https://img.skitch.com/20110501-jp1wcjrprxt7rbw7xfb2bejh27.jpg)
-
 Dependencies
 ===========
 
@@ -110,7 +102,7 @@ For more examples please check the `example/` folder.
 Troubleshooting
 ===============
 
-1. I use `long-stack-straces` module in my own code and all of the tests get
+##### I use `long-stack-straces` module in my own code and all of the tests get
 reported as succeeded
 
 Long stack traces modules intercepts the default Error object and throws a custom
@@ -124,7 +116,7 @@ the tests. This shouldn't be a big deal, because Whiskey internally already uses
 `long-stack-traces` module which means that you will still get long stack traces
 in the exceptions which were thrown in your tests.
 
-2. My test gets reported as "timeout" instead of "failure"
+##### My test gets reported as "timeout" instead of "failure"
 
 If your test gets reported as "timeout" instead of "failure" your test code most
 likely looks similar to the one bellow:
