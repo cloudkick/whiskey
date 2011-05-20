@@ -102,7 +102,7 @@ For more examples please check the `example/` folder.
 Troubleshooting
 ===============
 
-##### I use `long-stack-straces` module in my own code and all of the tests get
+#### I use `long-stack-straces` module in my own code and all of the tests get
 reported as succeeded
 
 Long stack traces modules intercepts the default Error object and throws a custom
@@ -116,7 +116,7 @@ the tests. This shouldn't be a big deal, because Whiskey internally already uses
 `long-stack-traces` module which means that you will still get long stack traces
 in the exceptions which were thrown in your tests.
 
-##### My test gets reported as "timeout" instead of "failure"
+#### My test gets reported as "timeout" instead of "failure"
 
 If your test gets reported as "timeout" instead of "failure" your test code most
 likely looks similar to the one bellow:
