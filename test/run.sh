@@ -218,6 +218,15 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# No test function is exported, it should quit immediately
+"${CWD}/bin/whiskey" --timeout 1000 \
+ --tests "${CWD}/example/test-no-test-functions.js"
+
+if [ $? -ne 0 ]; then
+    echo "test didn't exit with zero exit code"
+    exit 1
+fi
+
 echo ""
 echo "* * * Whiskey test suite PASSED. * * *"
 exit 0
