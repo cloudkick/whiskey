@@ -20,9 +20,17 @@ var path = require('path');
 require.paths.unshift(path.join(__dirname, '../'));
 
 var cwd = process.cwd();
+var argv = process.argv;
 var whiskey = require('index');
+var argvLen = argv.length;
 
-whiskey.run(cwd, process.argv);
+if (argvLen >= 3) {
+  if (argv[2].indexOf('--') !== 0) {
+    argv.splice(2, 0, '--tests');
+  }
+}
+
+whiskey.run(cwd, argv);
 
 process.on('uncaughtException', function(err) {
   console.log(err.message);
