@@ -4,6 +4,9 @@ Changes
 * in development:
   * When reporting the test results print the whole path to the test file
     instead of just a file name
+  * Add support for skipping a test using `test.skip()` function
+  * Allow user to directly pass in a list of test to run to the whiskey binary
+    without using the --tests option
 
 * 17.05.2011 - v0.3.3:
   * Make test object a function and allow users to directly call this function
