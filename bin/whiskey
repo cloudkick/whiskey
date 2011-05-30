@@ -25,7 +25,7 @@ var whiskey = require('index');
 var argvLen = argv.length;
 
 if (argvLen >= 3) {
-  if (argv[2].indexOf('--') !== 0) {
+  if (argv[2].indexOf('-') !== 0) {
     argv.splice(2, 0, '--tests');
   }
 }
