@@ -1,9 +1,14 @@
 Changes
 =======
 
-* in development:
-  * When reporting the test results print the whole path to the test file
+* 31.05.2011 - v0.3.4:
+  * When reporting the test results print a whole path to the test file
     instead of just a file name
+  * Add `--no-styles` option and only use styles and colors if the underlying
+    terminal supports it
+  * Don't patch `EventEmitter.on` and `EventEmitter.addListener` in the
+    long-stack-traces library, because this masks original functions and breaks
+    some functionality
   * Add support for skipping a test using `test.skip()` function
   * Allow user to directly pass in a list of test to run to the whiskey binary
     without using the --tests option

@@ -1,7 +1,7 @@
 {
   "name": "whiskey",
   "description": "A simple test runner for NodeJS applications.",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "author": "Cloudkick, Inc. <tomaz+npm@cloudkick.com> http://www.cloudkick.com",
   "keywords": [ "whiskey", "tests", "test runner", "testing", "tdd", "coverage", "test coverage"],
   "homepage": "https://github.com/cloudkick/whiskey",
