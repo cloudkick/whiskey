@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 CWD=`pwd`
 
 "${CWD}/bin/whiskey" --tests "${CWD}/example/test-success.js"
