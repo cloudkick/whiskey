@@ -22,6 +22,7 @@ require.paths.unshift(path.join(__dirname, '../'));
 var cwd = process.cwd();
 var argv = process.argv;
 var whiskey = require('index');
+var run = require('lib/run');
 var argvLen = argv.length;
 
 if (argvLen >= 3) {
@@ -34,5 +35,6 @@ whiskey.run(cwd, argv);
 
 process.on('uncaughtException', function(err) {
   console.log(err.message);
+  run.exitCode = 1;
   process.exit(1);
 });
