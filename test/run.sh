@@ -87,7 +87,7 @@ fi
 FOLDER_EXISTS=0
 rm -rf ${CWD}/example/test-123456
 
-"${CWD}/bin/whiskey" --print-stdout --test-init-file "${CWD}/example/init.js" --tests "${CWD}/example/test-success.js"
+"${CWD}/bin/whiskey" --test-init-file "${CWD}/example/init.js" --tests "${CWD}/example/test-success.js"
 
 if [ -d ${CWD}/example/test-123456 ]; then
   FOLDER_EXISTS=1

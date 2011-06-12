@@ -7,7 +7,7 @@ var sprintf = require('sprintf').sprintf;
 
 var cwd = process.cwd();
 
-exec(sprintf('%s/bin/whiskey --tests %s/example/test-timeout.js --timeout 1000 --print-stdout --print-stderr', cwd, cwd),
+exec(sprintf('%s/bin/whiskey --tests %s/example/test-timeout.js --timeout 1000', cwd, cwd),
   function(err, stdout, stderr) {
     try {
       assert.match(stdout, /test_success_1/);
