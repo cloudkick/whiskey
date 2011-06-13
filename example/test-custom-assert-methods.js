@@ -47,3 +47,19 @@ exports['test_assert.response'] = function(test, assert) {
     test.finish();
   });
 };
+
+exports['test_other_custom_asserts_functions'] = function(test, assert) {
+  assert.equal(assert.eql, assert.deepEqual);
+  assert.isNull(null);
+  assert.isNotNull(1);
+  assert.isNotNull(false);
+  assert.isNotNull(0);
+  assert.isNotNull(-1);
+  assert.isDefined(1);
+  assert.type('a', 'string');
+  assert.type(function() {}, 'function');
+  assert.includes([1,2,3], 2);
+  assert.length([1,2,3], 3);
+
+  test.finish();
+};
