@@ -49,7 +49,6 @@ exports['test_assert.response'] = function(test, assert) {
 };
 
 exports['test_other_custom_asserts_functions'] = function(test, assert) {
-  assert.equal(assert.eql, assert.deepEqual);
   assert.isNull(null);
   assert.isNotNull(1);
   assert.isNotNull(false);
