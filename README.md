@@ -7,8 +7,7 @@ Features
 ========
 
 * Each test file runs isolated in a separate process
-* By default multiple asynchronous tests run in parallel
-* Support for running tests in a sequential mode (only a single test runs at once)
+* Support for running multiple tests in parallel (`--concurrency` option)
 * Support for a test initialization function which is run before running the tests in a test file
 * Support for a test file timeout
 * setUp / tearDown function support
@@ -35,7 +34,7 @@ For changes please see `CHANGES.md` file.
 Installation
 ============
 
-Install it using npm: 
+Install it using npm:
 ```
 npm install whiskey
 ```
@@ -57,9 +56,9 @@ Usage
  out
  * **--failfast** - Stop running the tests on a first failure or a timeout
  * **--no-styles** - Don't use styles and colors
- * **--concurrency [NUMBER]** - Maximum number of tests which will run in parallel (defaults to 100)
- * **--print-stdout** - Print data which was sent to stdout
- * **--print-stderr** - Print data which was sent to stderr
+ * **--concurrency [NUMBER]** - Maximum number of tests which will run in parallel (defaults to 1)
+ * **--quiet** - Don't print stdout and stderr
+ * **--real-time** - Print stdout and stderr as soon as it comes in
  * **--test-reporter [cli,tap]** - Which test reporter to use (defaults to cli)
  * **--coverage** - Use this option to enable the test coverage
  * **--coverage-reporter [cli,html]** - Which coverage reporter to use (defaults to cli)
@@ -67,6 +66,7 @@ Usage
  * **--scope-leaks** - Record which variables were leaked into a global scope
  * **--scope-leaks-reporter [cli]** - Which scope leak reporter to use (defauls
    to cli)
+ * **--debug** Attach a Node debugger to the test process
 
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
@@ -134,11 +134,10 @@ exports["test failure"] = function(test, assert){
 };
 ```
 
-The problem with this is that if you run tests in parallel (by default Whiskey
-runs with `--concurrency 100` option) and you don't use a custom assert object
-which gets passed to each test function, Whiskey can't figure out to which test
-the exception belongs. As a consequence, the test is reported as "timeout" and
-the exception is reported as "uncaught".
+The problem with this is that if you run tests in parallel (`--concurrency` > 1)
+and you don't use a custom assert object which gets passed to each test function,
+Whiskey can't figure out to which test the exception belongs. As a consequence,
+the test is reported as "timed out" and the exception is reported as "uncaught".
 
-The solution for this problem is to run the tests with the `--sequential` option.
-This will tell Whiskey to run only a single test at once.
+The solution for this problem is to run the tests in sequential mode (drop the
+--concurrency option).
