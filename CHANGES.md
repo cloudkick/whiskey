@@ -2,6 +2,7 @@ Changes
 =======
 
 * in development - v0.4.0:
+  * Add experimental support for Node debugger (`--debug` option)
   * Fix a bug in assert.response
   * Fix a bug with exiting prematurely in the option parser on Mac OS X
   * Default Whiskey communication socket path now contains a random component
