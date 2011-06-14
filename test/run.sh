@@ -16,7 +16,7 @@ if [ $? -ne 2 ]; then
 fi
 
 "${CWD}/bin/whiskey" --failfast --timeout 500 \
-  --tests "${CWD}/example/test-failure.js ${CWD}/example/test-timeout.js"
+  --tests --concurrency 100 "${CWD}/example/test-failure.js ${CWD}/example/test-timeout.js"
 
 if [ $? -ne 1 ]; then
     echo "1 test should fail"
