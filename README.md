@@ -104,6 +104,18 @@ exports['test_two_equals_one'] = function(test, assert) {
 
 For more examples please check the `example/` folder.
 
+Debugging
+=========
+
+If you want to debug your test, you can use the `--debug` option. This will
+cause Whiskey to start the test process with the V8 debugger attached to it
+and put you into the Node debugger prompt.
+
+Whiskey will also by default set a breakpoint at the beginning of your test
+file.
+
+Note: This option can only be used with a single test file.
+
 Troubleshooting
 ===============
 
