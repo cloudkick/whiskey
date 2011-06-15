@@ -9,9 +9,6 @@
     "type": "git",
     "url": "git://github.com/cloudkick/whiskey.git"
   },
-  "modules": {
-    "whiskey": "./lib/whiskey"
-  },
   "directories": {
     "lib": "./lib",
     "example": "./example",
