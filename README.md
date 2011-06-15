@@ -29,7 +29,7 @@ Dependencies
 Changes
 =======
 
-For changes please see [CHANGES.md](CHANGES.md) file.
+For changes please see [CHANGES.md](/cloudkick/whiskey/blob/master/CHANGES.md) file.
 
 Installation
 ============
