@@ -1,16 +1,18 @@
 Changes
 =======
 
-* in development - v0.4.0:
-  * Add experimental support for Node debugger (`--debug` option)
-  * Fix a bug in assert.response
+* 15.06.2011 - v0.4.0:
+  * Add experimental support for attaching Node debugger to the test process
+    (`--debug` option)
+  * Fix a bug in `assert.response`
   * Fix a bug with exiting prematurely in the option parser on Mac OS X
   * Default Whiskey communication socket path now contains a random component
   * `--print-stdout` and `--print-stderr` options have been replaced with the
     `--quiet` option
-  * The tests now run in sequential mode by default
+  * The tests now run in sequential mode by default (old behavior can be
+    replicated by using the `--concurrency 100` option)
   * Fix a bug in scope leak reporting
-  * Fix a bug with assert.eql
+  * Fix a bug in `assert.eql`
 
 * 31.05.2011 - v0.3.4:
   * When reporting the test results print a whole path to the test file

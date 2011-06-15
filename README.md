@@ -66,7 +66,7 @@ Usage
  * **--scope-leaks** - Record which variables were leaked into a global scope
  * **--scope-leaks-reporter [cli]** - Which scope leak reporter to use (defauls
    to cli)
- * **--debug** Attach a Node debugger to the test process
+ * **--debug** - Attach a Node debugger to the test process
 
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
