@@ -243,6 +243,23 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Test pattern name matching
+"${CWD}/bin/whiskey" --timeout 1000 \
+ --tests "example.test-failure.test_one_is_not*"
+
+if [ $? -ne 1 ]; then
+    echo "test didn't exit with 1 exit code"
+    exit 1
+fi
+
+"${CWD}/bin/whiskey" --timeout 1000 \
+ --tests "${CWD}/example/test-getFilePathAndPattern.js"
+
+if [ $? -ne 0 ]; then
+    echo "test didn't exit with zero exit code"
+    exit 1
+fi
+
 echo ""
 echo "* * * Whiskey test suite PASSED. * * *"
 exit 0
