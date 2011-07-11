@@ -1,6 +1,12 @@
 Changes
 =======
 
+* 11.07.2011 - v0.4.1:
+  * Fix a bug with reporting coverage when multiple test files had the same
+    name
+  * Allow user to specify which tests in a test file are run using a glob
+    pattern
+
 * 15.06.2011 - v0.4.0:
   * Add experimental support for attaching Node debugger to the test process
     (`--debug` option)
