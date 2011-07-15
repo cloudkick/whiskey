@@ -16,7 +16,7 @@
  */
 
 exports['test_skip1'] = function(test, assert) {
-  test.skip();
+  test.skip("some reason blah");
   assert.ok(false);
 };
 
