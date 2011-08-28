@@ -1,6 +1,16 @@
 Changes
 =======
 
+* 29.08.2011 - v0.4.2:
+  * assert.ifError now also captures a stack trace
+  * Don't set a first breakpoint at the beginning of the test file when using
+    --debug option
+  * User can now pass a reason / message to the test.skip() function
+  * Add a new 'json' coverage reporter which writes a raw JSON coverage dump to
+    a file
+  * Add a new `--coverage-files` option which allows user to generate aggregated
+    coverage report across multiple files.
+
 * 11.07.2011 - v0.4.1:
   * Fix a bug with reporting coverage when multiple test files had the same
     name
