@@ -1,6 +1,13 @@
 Changes
 =======
 
+* in development - v0.5.0:
+  * Remove all the code which modifies `require.paths` so now Whiskey also works
+    with node v0.5.x.
+
+    Note: Now when using code coverage you must manually set `NODE_PATH` environment
+    variable and make sure it contains the `lib-cov` directory.
+
 * 29.08.2011 - v0.4.2:
   * assert.ifError now also captures a stack trace
   * Don't set a first breakpoint at the beginning of the test file when using
