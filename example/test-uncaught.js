@@ -15,8 +15,7 @@
  * limitations under the License.
 */
 
-require.paths.unshift(__dirname);
-var someFile = require('some-file');
+var someFile = require('./some-file');
 
 exports['test_uncaught_exception'] = function(test, assert) {
   throw new Error('Testing uncaught exception');
