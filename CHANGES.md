@@ -2,6 +2,8 @@ Changes
 =======
 
 * in development - v0.5.0:
+  * Add `--gen-makefile` and `--makefile-path` option which allows users to generate
+    a Makefile with different Whiskey targets
   * Remove all the code which modifies `require.paths` so now Whiskey also works
     with node v0.5.x.
 
