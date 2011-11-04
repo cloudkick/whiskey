@@ -2,6 +2,7 @@ Changes
 =======
 
 * in development - v0.5.0:
+  * Add `--report-timing` option which reports each test run time.
   * Add `--gen-makefile` and `--makefile-path` option which allows users to generate
     a Makefile with different Whiskey targets
   * Remove all the code which modifies `require.paths` so now Whiskey also works
