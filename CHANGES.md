@@ -1,12 +1,15 @@
 Changes
 =======
 
-* in development - v0.5.0:
+* in development - v0.5.1:
+  /
+
+* 05.11.2011 - v0.5.0:
   * Add `--report-timing` option which reports each test run time.
   * Add `--gen-makefile` and `--makefile-path` option which allows users to generate
     a Makefile with different Whiskey targets
   * Remove all the code which modifies `require.paths` so now Whiskey also works
-    with node v0.5.x.
+    with node v0.5.x / v0.6.x.
 
     Note: Now when using code coverage you must manually set `NODE_PATH` environment
     variable and make sure it contains the `lib-cov` directory.
