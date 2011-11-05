@@ -6,6 +6,8 @@ Changes
 
 * 05.11.2011 - v0.5.0:
   * Add `--report-timing` option which reports each test run time.
+  * If an error object has no `message` attribute, but it has `toString` method,
+    call this method and assign a returned value to the `message` attribute
   * Add `--gen-makefile` and `--makefile-path` option which allows users to generate
     a Makefile with different Whiskey targets
   * Remove all the code which modifies `require.paths` so now Whiskey also works
