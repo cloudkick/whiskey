@@ -67,6 +67,7 @@ Usage
  * **--scope-leaks-reporter [cli]** - Which scope leak reporter to use (defauls
    to cli)
  * **--debug** - Attach a Node debugger to the test process
+ * **--report-timing** - Report each test run time
 
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
