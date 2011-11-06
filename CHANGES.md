@@ -1,8 +1,11 @@
 Changes
 =======
 
-* in development - v0.5.1:
-  /
+* 06.11.2011 - v0.5.1:
+  * Fix a bug which caused an infinite loop in the CLI reporter if a test
+    name was too long.
+  * If `--report-timing` option is used also print aggregated run time for each
+    test file.
 
 * 05.11.2011 - v0.5.0:
   * Add `--report-timing` option which reports each test run time.
