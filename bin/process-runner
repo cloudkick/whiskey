@@ -22,5 +22,10 @@ run(process.argv);
 
 process.on('uncaughtException', function(err) {
   console.log(err.message);
+
+  if (err.stack) {
+    console.log(err.stack);
+  }
+
   process.exit(1);
 });

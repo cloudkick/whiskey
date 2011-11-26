@@ -9,7 +9,7 @@ Example file: example/dependencies.json.
 Valid `wait_for` values:
 
 * none - Don't wait
-* `stdout` - wait for a string on standard output
+* `stdout` - wait for a string on standard output or standard error
 * `socket` - wait until a connection on the provided ip and port can be
   successfully established.
 
@@ -37,3 +37,7 @@ Command line tool can be used for:
 ### Usage
 
 TODO
+
+### TODO
+
+* Command line option for interactively generating dependencies.json
