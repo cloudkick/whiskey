@@ -18,6 +18,8 @@
 
 var path = require('path');
 
+var logmagic = require('logmagic');
+
 var cwd = process.cwd();
 var argv = process.argv;
 var whiskey = require('../index');
@@ -30,6 +32,7 @@ if (argvLen >= 3) {
   }
 }
 
+logmagic.route('whiskey.proces_runner.*', logmagic.INFO, 'process_runner');
 whiskey.run(cwd, argv);
 
 process.on('uncaughtException', function(err) {
