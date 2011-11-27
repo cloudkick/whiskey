@@ -11,9 +11,12 @@ Features
 * Support for a test initialization function which is run before running the tests in a test file
 * Support for a test file timeout
 * setUp / tearDown function support
-* Nicely formatted reports (colors!)
+* Support for different test reporters (cli, tap)
 * Support for code coverage (cli reporter, html reporter)
 * Support for reporting variables which have leaked into a global scope
+* Nicely formatted reports (colors!)
+* Integration with node debugger
+* Support for generating Makefiles with different Whiskey targets
 
 Dependencies
 ===========
@@ -70,7 +73,8 @@ Usage
  * **--debug** - Attach a Node debugger to the test process
  * **--report-timing** - Report each test run time
  * **--dependencies STRING** - Specify path to the dependencies file for the
-   process runner. More information at the process runner can be found at []().
+   process runner. More information about the process runner can be found at
+   [PROCESS_RUNNER.md](/cloudkick/whiskey/blob/master/PROCESS_RUNNER.md)
 
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`

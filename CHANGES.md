@@ -1,6 +1,11 @@
 Changes
 =======
 
+277.11.2011 - v0.6.0:
+  * Add process runner and support for managing and orchestrating test
+    dependencies. More info about the process runner can be found at
+    [PROCESS_RUNNER.md](/cloudkick/whiskey/blob/master/PROCESS_RUNNER.md).
+
 * 06.11.2011 - v0.5.1:
   * Fix a bug which caused an infinite loop in the CLI reporter if a test
     name was too long.

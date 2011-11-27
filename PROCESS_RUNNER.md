@@ -1,12 +1,12 @@
 # Process Runner
 
-Whiskey process runner can be used for starting all the dependencies for your
-tests.
+Whiskey process runner can be used for starting and managing service
+dependencies for your tests.
 
 Example dependencies include, but are not limited to:
 
 * databases,
-* web servers
+* web servers,
 * other external services
 
 Note: All the processes defined in the configuration file are managed by Whiskey
@@ -48,10 +48,20 @@ Example configuration file:
 }
 ```
 
+### Option descriptions
+
+* `cmd` - command to run.
+* `cwd` - process working directory (defaults to the current working
+   directory).
+* `log_file` - path to the file where the process stdout and stderr is saved.
+  (defaults to `cwd/<process_name>.log`)
+* `wait_for` - Condition which must be met before the process is considered as
+  started (defaults to `none`).
+
 Valid `wait_for` values:
 
 * `none` - don't wait
-* `stdout` - wait for a string on standard output or standard error
+* `stdout` - wait for a string on process standard output or standard error
 * `socket` - wait until a connection on the provided ip and port is successfully
   established
 
@@ -60,12 +70,10 @@ Valid options for `wait_for_options`:
 * `stdout` - `string`
 * `socket` - `host`, `port`
 
-Default values:
-
-* `log_file` - <cwd>/<name>.log
-* `wait_for` - none
-* `timeout` - 10 seconds
-* `depends`- []
+* `timeout` - how long to wait for process to start (in ms) before erroring
+   out (defaults to 10 seconds).
+* `depends` - Array of names of process dependencies. Name must match some other
+  process defined in the configuration file.
 
 ## Specifying Dependencies In the Test Files
 
