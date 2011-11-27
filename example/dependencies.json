@@ -1,6 +1,7 @@
 {
   "cassandra": {
-    "cmd": ["/usr/local/bin/cassandra/", "-d"],
+    "cmd": ["/usr/local/bin/cassandra/", "-f"],
+    "cwd": ["__dirname", ".."],
     "log_file": "cassandra.log",
     "wait_for": "socket",
     "wait_for_options": {

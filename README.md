@@ -25,6 +25,7 @@ Dependencies
 * magic-templates
 * terminal
 * [node-jscoverage](https://github.com/Kami/node-jscoverage) (only required if `--coverage` option is used)
+* simplesets
 
 Changes
 =======
@@ -64,10 +65,12 @@ Usage
  * **--coverage-reporter [cli,html]** - Which coverage reporter to use (defaults to cli)
  * **--coverage-dir** - Directory where the coverage HTML report is saved
  * **--scope-leaks** - Record which variables were leaked into a global scope
- * **--scope-leaks-reporter [cli]** - Which scope leak reporter to use (defauls
+ * **--scope-leaks-reporter [cli]** - Which scope leak reporter to use (defaults
    to cli)
  * **--debug** - Attach a Node debugger to the test process
  * **--report-timing** - Report each test run time
+ * **--dependencies STRING** - Specify path to the dependencies file for the
+   process runner. More information at the process runner can be found at []().
 
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
