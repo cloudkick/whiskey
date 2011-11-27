@@ -1,7 +1,7 @@
 Changes
 =======
 
-277.11.2011 - v0.6.0:
+* 27.11.2011 - v0.6.0:
   * Add process runner and support for managing and orchestrating test
     dependencies. More info about the process runner can be found at
     [PROCESS_RUNNER.md](/cloudkick/whiskey/blob/master/PROCESS_RUNNER.md).
