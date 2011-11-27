@@ -18,17 +18,10 @@ Features
 * Integration with node debugger
 * Support for generating Makefiles with different Whiskey targets
 
-Dependencies
-===========
+Non NPM-installable Dependencies
+===============================
 
-* optparse-js
-* async
-* sprintf
-* rimraf
-* magic-templates
-* terminal
 * [node-jscoverage](https://github.com/Kami/node-jscoverage) (only required if `--coverage` option is used)
-* simplesets
 
 Changes
 =======
