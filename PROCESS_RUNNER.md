@@ -17,7 +17,36 @@ foreground.
 
 `dependencies.json` file is used to specify all the dependencies for your tests.
 
-Example file: example/dependencies.json.
+Example configuration file:
+
+```javascript
+{
+  "cassandra": {
+    "cmd": ["/usr/local/bin/cassandra/", "-f"],
+    "cwd": ["__dirname", ".."],
+    "log_file": "cassandra.log",
+    "wait_for": "socket",
+    "wait_for_options": {
+      "host": "127.0.0.1",
+      "port": "1234"
+    },
+    "timeout": 6000
+  },
+
+  "api_server": {
+    "cmd": ["bin/api-server"],
+    "depends": ["cassandra"]
+  },
+
+  "celery": {
+    "cmd": ["celeryd", "-w", "5"],
+    "wait_for": "stdout",
+    "wait_for_options": {
+      "string": "Celery has been started..."
+    }
+  }
+}
+```
 
 Valid `wait_for` values:
 
@@ -26,6 +55,11 @@ Valid `wait_for` values:
 * `socket` - wait until a connection on the provided ip and port is successfully
   established
 
+Valid options for `wait_for_options`:
+
+* `stdout` - `string`
+* `socket` - `host`, `port`
+
 Default values:
 
 * `log_file` - <cwd>/<name>.log
@@ -33,7 +67,7 @@ Default values:
 * `timeout` - 10 seconds
 * `depends`- []
 
-## Specifying Dependencies in the Test Files
+## Specifying Dependencies In the Test Files
 
 ``` javascript
 exports.dependencies = ['name1', 'name2'];
@@ -43,7 +77,7 @@ exports.dependencies = ['name1', 'name2'];
 
 Command line tool can be used for:
 
-* Verifying dependencies.json is correct
+* Verifying that the configuration file is correct
 * Starting specified dependencies without running the tests. All the started
   processed are stopped on `SIGINT`.
 
@@ -53,9 +87,13 @@ Command line tool can be used for:
 
 `whiskey-process-runner --configuration [file.json] --verify`
 
-## Start all the processes defined in the configuration file
+### Start all the processes defined in the configuration file
 
 `whiskey-process-runner --configuration [file.json] --run`
+
+### Start some processes defined in the configuration file
+
+`whiskey-process-runner --configuration [file.json] --run --names process1,process2`
 
 ### TODO
 
