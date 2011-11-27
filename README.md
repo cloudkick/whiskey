@@ -1,7 +1,7 @@
 Whiskey
 =======
 
-Whiskey is a simple test runner for NodeJS applications.
+Whiskey is a powerful test runner for NodeJS applications.
 
 Features
 ========
