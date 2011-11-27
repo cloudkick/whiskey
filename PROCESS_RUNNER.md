@@ -58,17 +58,17 @@ Example configuration file:
 * `wait_for` - Condition which must be met before the process is considered as
   started (defaults to `none`).
 
-Valid `wait_for` values:
+  Valid `wait_for` values:
 
-* `none` - don't wait
-* `stdout` - wait for a string on process standard output or standard error
-* `socket` - wait until a connection on the provided ip and port is successfully
-  established
+  * `none` - don't wait
+  * `stdout` - wait for a string on process standard output or standard error
+  * `socket` - wait until a connection on the provided ip and port is successfully
+    established
 
-Valid options for `wait_for_options`:
+  Valid options for `wait_for_options`:
 
-* `stdout` - `string`
-* `socket` - `host`, `port`
+  * `stdout` - `string`
+  * `socket` - `host`, `port`
 
 * `timeout` - how long to wait for process to start (in ms) before erroring
    out (defaults to 10 seconds).
