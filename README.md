@@ -75,6 +75,9 @@ Usage
  * **--dependencies STRING** - Specify path to the dependencies file for the
    process runner. More information about the process runner can be found at
    [PROCESS_RUNNER.md](/cloudkick/whiskey/blob/master/PROCESS_RUNNER.md)
+ * **--only-essential-dependencies** - Only start dependencies required by the tests
+   files which are ran. This option is only applicable if `--dependencies` option
+   is used.
 
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
