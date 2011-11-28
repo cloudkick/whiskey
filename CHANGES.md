@@ -9,6 +9,8 @@ Changes
  * If process runner is used with Whiskey, make sure to stop all the running
    processes if Whiskey errors out. Reported by Ryan Phillips.
 
+ * Log an error if test.finish() has been called more then once.
+
 * 27.11.2011 - v0.6.0:
   * Add process runner and support for managing and orchestrating test
     dependencies. More info about the process runner can be found at
