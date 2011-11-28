@@ -20,7 +20,7 @@ var logmagic = require('logmagic');
 
 var run = require('./../lib/process_runner/run').run;
 
-logmagic.route('whiskey.proces_runner.*', logmagic.INFO, 'process_runner');
+logmagic.route('whiskey.process_runner.*', logmagic.INFO, 'process_runner');
 run(process.argv);
 
 process.on('uncaughtException', function(err) {
