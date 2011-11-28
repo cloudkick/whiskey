@@ -1,6 +1,14 @@
 Changes
 =======
 
+29.11.2011 - v0.6.1
+ * Make sure to kill the processes which have already been started by the
+   process runner if starting one of the processes fails. Reported by
+   Ryan Phillips.
+
+ * If process runner is used with Whiskey, make sure to stop all the running
+   processes if Whiskey errors out. Reported by Ryan Phillips.
+
 * 27.11.2011 - v0.6.0:
   * Add process runner and support for managing and orchestrating test
     dependencies. More info about the process runner can be found at
