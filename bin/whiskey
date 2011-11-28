@@ -32,7 +32,7 @@ if (argvLen >= 3) {
   }
 }
 
-logmagic.route('whiskey.proces_runner.*', logmagic.INFO, 'process_runner');
+logmagic.route('whiskey.process_runner.*', logmagic.INFO, 'process_runner');
 whiskey.run(cwd, argv);
 
 process.on('uncaughtException', function(err) {
@@ -43,5 +43,11 @@ process.on('uncaughtException', function(err) {
   }
 
   run.exitCode = 1;
-  process.exit(1);
+
+  if (run.processRunner) {
+    run.processRunner.stop(process.exit.bind(null, 1));
+  }
+  else {
+    process.exit(1);
+  }
 });
