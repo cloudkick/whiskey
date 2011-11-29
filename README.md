@@ -102,7 +102,7 @@ A simple example (skipping a test):
 
 ``` javascript
 var dbUp = false;
-exports['test_test_query'] = function(test, assert) {
+exports['test_query'] = function(test, assert) {
   if (!dbUp) {
     test.skip('Database is not up, skipping...');
     return;
@@ -133,7 +133,7 @@ directory.
 
 `npm test`
 
-If all the tests have sucessfully pased, the process should exit with a zero
+If all the tests have sucessfully passed, the process should exit with a zero
 status code and you should see `* * * Whiskey test suite PASSED. * * *`
 message.
 
