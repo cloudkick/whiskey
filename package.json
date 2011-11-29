@@ -31,5 +31,11 @@
     "node": ">= 0.4.0"
   },
   "main": "./index",
-  "bin": "./bin/whiskey"
+  "bin": "./bin/whiskey",
+  "licenses" : [
+    {
+      "type" : "Apache",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  ]
 }
