@@ -32,6 +32,7 @@ Installation
 ============
 
 Install it using npm:
+
 ```
 npm install whiskey
 ```
@@ -97,6 +98,22 @@ exports['tearDown'] = function(test, assert) {
 }
 ```
 
+A simple example (skipping a test):
+
+``` javascript
+var dbUp = false;
+exports['test_test_query'] = function(test, assert) {
+  if (!dbUp) {
+    test.skip('Database is not up, skipping...');
+    return;
+  }
+
+  assert.equal(2, 1);
+  test.finish();
+}
+```
+
+
 A simple example (failure):
 
 ``` javascript
@@ -107,6 +124,24 @@ exports['test_two_equals_one'] = function(test, assert) {
 ```
 
 For more examples please check the `example/` folder.
+
+Running Whiskey test suite
+==========================
+
+To run the Whiskey test suite, run the following command in the repository root
+directory.
+
+`npm test`
+
+If all the tests have sucessfully pased, the process should exit with a zero
+status code and you should see `* * * Whiskey test suite PASSED. * * *`
+message.
+
+Contributing
+============
+
+To contribute, fork the repository, create a branch with your changes and open a
+pull request.
 
 Debugging
 =========
@@ -157,3 +192,8 @@ the test is reported as "timed out" and the exception is reported as "uncaught".
 
 The solution for this problem is to run the tests in sequential mode (drop the
 --concurrency option).
+
+License
+=======
+
+Apache 2.0, for more info see [LICENSE](/cloudkick/whiskey/blob/master/LICENSE).
