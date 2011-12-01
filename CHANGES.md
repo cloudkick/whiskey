@@ -1,6 +1,10 @@
 Changes
 =======
 
+* in development
+  * If an error occurs when the process runner is starting processes,
+    propagate it to ProcessRunner.start callback. Patch by Ken Wronkiewicz.
+
 * 29.11.2011 - v0.6.1
  * Make sure to kill the processes which have already been started by the
    process runner if starting one of the processes fails. Reported by
