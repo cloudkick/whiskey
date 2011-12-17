@@ -1,6 +1,9 @@
 Changes
 =======
 
+* 16.12.2011 - v0.6.3:
+  * Fix a race condition when using code coverage and instrumenting the code.
+
 * 01.12.2011 - v0.6.2
   * If an error occurs when the process runner is starting a processes,
     propagate it to the ProcessRunner.start callback. Patch by Ken Wronkiewicz.
