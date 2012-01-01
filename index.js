@@ -16,3 +16,4 @@
  */
 
 exports.run = require('./lib/run.js').run;
+exports.installCoverageExitHandler = require('./lib/coverage').installExitHandler;
