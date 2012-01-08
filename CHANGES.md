@@ -1,6 +1,15 @@
 Changes
 =======
 
+* 07.01.2012 - v0.6.4:
+  * Add and export installCoverageHandler function.
+
+  * Add 'available_for_coverage' option to the process runner. If a process
+    specifies this option it is sent SIGUSR2 signal when stopping it instead
+    of sending SIGTERM.
+
+  * Allow user to specify full path when using a JSON coverage reporter.
+
 * 16.12.2011 - v0.6.3:
   * Fix a race condition when using code coverage and instrumenting the code.
 
