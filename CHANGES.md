@@ -1,6 +1,10 @@
 Changes
 =======
 
+* 08.01.2012 - v0.6.5:
+ * Modify JSON coverage reporter so it can also be used for aggregated coverage
+   output.
+
 * 07.01.2012 - v0.6.4:
   * Add and export installCoverageHandler function.
 
