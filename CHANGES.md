@@ -1,6 +1,12 @@
 Changes
 =======
 
+* 26.01.2012 - v0.6.6:
+
+ * Add `--coverage-no-instrument` option
+ * Also support files with .java suffix when aggregating coverage. Contributed
+   by Gary Dusbabek.
+
 * 08.01.2012 - v0.6.5:
  * Modify JSON coverage reporter so it can also be used for aggregated coverage
    output.
