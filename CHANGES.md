@@ -1,7 +1,7 @@
 Changes
 =======
 
-* in development:
+* 09.02.2012 - v0.6.7:
 
 * Add `--coverage-no-regen` option. If this option is used coverage won't be
   regenerated if a `lib-cov` directory already exists in a current working
