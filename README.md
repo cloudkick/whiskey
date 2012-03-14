@@ -174,7 +174,7 @@ in the exceptions which were thrown in your tests.
 ### My test gets reported as "timeout" instead of "failure"
 
 If your test gets reported as "timeout" instead of "failure" your test code most
-likely looks similar to the one bellow:
+likely looks similar to the one below:
 
 ```javascript
 exports["test failure"] = function(test, assert){
