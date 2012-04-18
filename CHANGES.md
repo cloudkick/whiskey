@@ -1,6 +1,14 @@
 Changes
 =======
 
+* 18.04.2012 - v0.6.8:
+
+* Allow user to pass a comma delimited string with config paths to the
+  whiskey-process-runner binary. For example: whiskey-process-runner --config
+  tests/dependencies1.json,tests/dependencies2.json.
+  In case multiple paths are provided, Whiskey performs simple merge on all the
+  values.
+
 * 09.02.2012 - v0.6.7:
 
 * Add `--coverage-no-regen` option. If this option is used coverage won't be
