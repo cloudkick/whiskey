@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Whiskey by cloudkick</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Whiskey</h1>
+        <p>A powerful test runner for NodeJS applications.</p>
+        <p class="view"><a href="https://github.com/cloudkick/whiskey">View the Project on GitHub <small>cloudkick/whiskey</small></a></p>
+        <ul>
+          <li><a href="https://github.com/cloudkick/whiskey/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/cloudkick/whiskey/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/cloudkick/whiskey">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Whiskey</h1>
+
+<p>Whiskey is a powerful test runner for NodeJS applications.</p>
+
+<h1>Features</h1>
+
+<ul>
+<li>Each test file runs isolated in a separate process</li>
+<li>Support for running multiple tests in parallel (<code>--concurrency</code> option)</li>
+<li>Support for a test initialization function which is run before running the tests in a test file</li>
+<li>Support for a test file timeout</li>
+<li>setUp / tearDown function support</li>
+<li>Support for different test reporters (cli, tap)</li>
+<li>Support for code coverage (cli reporter, html reporter)</li>
+<li>Support for reporting variables which have leaked into a global scope</li>
+<li>Nicely formatted reports (colors!)</li>
+<li>Integration with node debugger</li>
+<li>Support for generating Makefiles with different Whiskey targets</li>
+</ul><h1>Non NPM-installable Dependencies</h1>
+
+<ul>
+<li>
+<a href="https://github.com/Kami/node-jscoverage">node-jscoverage</a> (only required if <code>--coverage</code> option is used)</li>
+</ul><h1>Changes</h1>
+
+<p>For changes please see <a href="/cloudkick/whiskey/blob/master/CHANGES.md">CHANGES.md</a> file.</p>
+
+<h1>Installation</h1>
+
+<p>Install it using npm:</p>
+
+<pre><code>npm install whiskey
+</code></pre>
+
+<h1>Usage</h1>
+
+<pre><code>whiskey [options] --tests "&lt;test files&gt;"
+</code></pre>
+
+<h4>Available options</h4>
+
+<ul>
+<li>
+<strong>-t, --tests</strong> - Whitespace separated list of test files to run</li>
+<li>
+<strong>-ti, --test-init-file</strong> - A path to the initialization file which must export
+<code>init</code> function and it is called in a child process *before running the tests in
+each test file</li>
+<li>
+<strong>-c, --chdir</strong> - An optional path to which the child process will chdir to before
+running the tests</li>
+<li>
+<strong>--timeout [NUMBER]</strong> - How long to wait for tests to complete before timing
+out</li>
+<li>
+<strong>--failfast</strong> - Stop running the tests on a first failure or a timeout</li>
+<li>
+<strong>--no-styles</strong> - Don't use styles and colors</li>
+<li>
+<strong>--concurrency [NUMBER]</strong> - Maximum number of tests which will run in parallel (defaults to 1)</li>
+<li>
+<strong>--quiet</strong> - Don't print stdout and stderr</li>
+<li>
+<strong>--real-time</strong> - Print stdout and stderr as soon as it comes in</li>
+<li>
+<strong>--test-reporter [cli,tap]</strong> - Which test reporter to use (defaults to cli)</li>
+<li>
+<strong>--coverage</strong> - Use this option to enable the test coverage</li>
+<li>
+<strong>--coverage-reporter [cli,html]</strong> - Which coverage reporter to use (defaults to cli)</li>
+<li>
+<strong>--coverage-dir</strong> - Directory where the coverage HTML report is saved</li>
+<li>
+<strong>--scope-leaks</strong> - Record which variables were leaked into a global scope</li>
+<li>
+<strong>--scope-leaks-reporter [cli]</strong> - Which scope leak reporter to use (defaults
+to cli)</li>
+<li>
+<strong>--debug</strong> - Attach a Node debugger to the test process</li>
+<li>
+<strong>--report-timing</strong> - Report each test run time</li>
+<li>
+<strong>--dependencies STRING</strong> - Specify path to the dependencies file for the
+process runner. More information about the process runner can be found at
+<a href="/cloudkick/whiskey/blob/master/PROCESS_RUNNER.md">PROCESS_RUNNER.md</a>
+</li>
+<li>
+<strong>--only-essential-dependencies</strong> - Only start dependencies required by the tests
+files which are ran. This option is only applicable if <code>--dependencies</code> option
+is used.</li>
+</ul><p>Note: When specifying multiple test a list with the test paths must be quoted,
+for example: <code>whiskey --tests "tests/a.js tests/b.js tests/c.js"</code></p>
+
+<h1>Test File Examples</h1>
+
+<p>A simple example (success):</p>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">called</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="nx">exports</span><span class="p">[</span><span class="s1">'test_async_one_equals_one'</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">assert</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="nx">called</span><span class="o">++</span><span class="p">;</span>
+    <span class="nx">test</span><span class="p">.</span><span class="nx">finish</span><span class="p">();</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">exports</span><span class="p">[</span><span class="s1">'tearDown'</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">assert</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">called</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="nx">test</span><span class="p">.</span><span class="nx">finish</span><span class="p">();</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>A simple example (skipping a test):</p>
+
+<div class="highlight">
+<pre><span class="kd">var</span> <span class="nx">dbUp</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="nx">exports</span><span class="p">[</span><span class="s1">'test_query'</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">assert</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">dbUp</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">test</span><span class="p">.</span><span class="nx">skip</span><span class="p">(</span><span class="s1">'Database is not up, skipping...'</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="nx">test</span><span class="p">.</span><span class="nx">finish</span><span class="p">();</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>A simple example (failure):</p>
+
+<div class="highlight">
+<pre><span class="nx">exports</span><span class="p">[</span><span class="s1">'test_two_equals_one'</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">assert</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="nx">test</span><span class="p">.</span><span class="nx">finish</span><span class="p">();</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>For more examples please check the <code>example/</code> folder.</p>
+
+<h1>Running Whiskey test suite</h1>
+
+<p>To run the Whiskey test suite, run the following command in the repository root
+directory.</p>
+
+<p><code>npm test</code></p>
+
+<p>If all the tests have sucessfully passed, the process should exit with a zero
+status code and you should see <code>* * * Whiskey test suite PASSED. * * *</code>
+message.</p>
+
+<h1>Contributing</h1>
+
+<p>To contribute, fork the repository, create a branch with your changes and open a
+pull request.</p>
+
+<h1>Debugging</h1>
+
+<p>If you want to debug your test, you can use the <code>--debug</code> option. This will
+cause Whiskey to start the test process with the V8 debugger attached to it
+and put you into the Node debugger prompt.</p>
+
+<p>Whiskey will also by default set a breakpoint at the beginning of your test
+file.</p>
+
+<p>Note: This option can only be used with a single test file.</p>
+
+<h1>Troubleshooting</h1>
+
+<h3>I use <code>long-stack-straces</code> module in my own code and all of the tests get reported as succeeded</h3>
+
+<p>Long stack traces modules intercepts the default Error object and throws a custom
+one. The problem with this is that Whiskey internally relies on attaching the
+test name to the <code>Error</code> object so it can figure out to which test the exception
+belongs. long-stack-traces throws a custom Error object and as a consequence test
+name attribute gets lost so Whiskey thinks your test didn't throw any exceptions.</p>
+
+<p>The solution for this problem is to disable <code>long-stack-trace</code> module when running
+the tests. This shouldn't be a big deal, because Whiskey internally already uses
+<code>long-stack-traces</code> module which means that you will still get long stack traces
+in the exceptions which were thrown in your tests.</p>
+
+<h3>My test gets reported as "timeout" instead of "failure"</h3>
+
+<p>If your test gets reported as "timeout" instead of "failure" your test code most
+likely looks similar to the one below:</p>
+
+<div class="highlight">
+<pre><span class="nx">exports</span><span class="p">[</span><span class="s2">"test failure"</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">assert</span><span class="p">){</span>
+  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="s2">"blaaaaah"</span><span class="p">;</span>
+    <span class="nx">test</span><span class="p">.</span><span class="nx">finish</span><span class="p">();</span>
+  <span class="p">},</span><span class="mi">200</span><span class="p">);</span>
+<span class="p">};</span>
+</pre>
+</div>
+
+
+<p>The problem with this is that if you run tests in parallel (<code>--concurrency</code> &gt; 1)
+and you don't use a custom assert object which gets passed to each test function,
+Whiskey can't figure out to which test the exception belongs. As a consequence,
+the test is reported as "timed out" and the exception is reported as "uncaught".</p>
+
+<p>The solution for this problem is to run the tests in sequential mode (drop the
+--concurrency option).</p>
+
+<h1>License</h1>
+
+<p>Apache 2.0, for more info see <a href="/cloudkick/whiskey/blob/master/LICENSE">LICENSE</a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/cloudkick">cloudkick</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
