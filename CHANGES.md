@@ -1,6 +1,13 @@
 Changes
 =======
 
+* 06.05.2012 - v0.6.9:
+
+* Allow user to specify "kill_script" attribute in the process runner
+  dependency file.
+  If this attribute is present, the kill_script is executed instead
+  of sending SIGTERM to the process when stopping it.
+
 * 18.04.2012 - v0.6.8:
 
 * Allow user to pass a comma delimited string with config paths to the
