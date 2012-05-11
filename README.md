@@ -125,6 +125,10 @@ exports['test_two_equals_one'] = function(test, assert) {
 
 For more examples please check the `example/` folder.
 
+# Build status
+
+[![Build Status](https://secure.travis-ci.org/cloudkick/whiskey.png)](http://travis-ci.org/cloudkick/whiskey)
+
 Running Whiskey test suite
 ==========================
 
