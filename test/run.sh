@@ -260,6 +260,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+"${CWD}/bin/whiskey" --timeout 1000 \
+ --tests "${CWD}/example/test-spyon.js"
+
+if [ $? -ne 0 ]; then
+    echo "Test didn't exit with zero exit code."
+    exit 1
+fi
+
 echo ""
 echo "* * * Whiskey test suite PASSED. * * *"
 exit 0
