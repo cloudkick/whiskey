@@ -1,7 +1,7 @@
 Changes
 =======
 
-* Change SIGTERM to SIGKILL for child processes.
+* Send the SIGKILL signal instead of SIGTERM when killing child processes managed by the process runner.
    [Robert Chiniquy]
 
 * 11.05.2012 - v0.6.10:
