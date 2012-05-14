@@ -1,6 +1,9 @@
 Changes
 =======
 
+* Change SIGTERM to SIGKILL for child processes.
+   [Robert Chiniquy]
+
 * 11.05.2012 - v0.6.10:
 
 * Add 'spy' functionality to the 'test' object.
