@@ -15,6 +15,25 @@
  * limitations under the License.
  */
 
-exports.bdd = require('./lib/bdd.js');
-exports.run = require('./lib/run.js').run;
-exports.installCoverageHandler = require('./lib/coverage').installCoverageHandler;
+var bdd = require('../lib/bdd').init(exports);
+var describe = bdd.describe;
+
+describe('the bdd expect()', function(it) {
+
+  it('correctly fails toBeNull()', function(expect) {
+    expect("not null").toBeNull();
+  });
+
+  it('correctly fails toBeDefined()', function(expect) {
+    expect(undefined).toBeDefined();
+  });
+
+  it('correctly fails toBeUndefined()', function(expect) {
+    expect(true).toBeUndefined();
+  });
+
+  it('correctly fails toMatch()', function(expect) {
+    expect('fish').toMatch(/not a fish/);
+  });
+  
+});

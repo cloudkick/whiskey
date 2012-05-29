@@ -1,6 +1,9 @@
 Changes
 =======
 
+* Add an optional, minimal BDD idiom implementation.
+   [Robert Chiniquy]
+
 * Send the SIGKILL signal instead of SIGTERM when killing child processes managed by the process runner.
    [Robert Chiniquy]
 
