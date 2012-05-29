@@ -268,6 +268,23 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+"${CWD}/bin/whiskey" --timeout 1000 \
+--tests "${CWD}/example/test-bdd.js"
+
+if [ $? -ne 0 ]; then
+    echo "BDD test didn't exit with zero exit code."
+    exit 1
+fi
+
+"${CWD}/bin/whiskey" --timeout 1000 \
+--tests "${CWD}/example/test-bdd-failures.js"
+
+if [ $? -ne 4 ]; then
+    echo "BDD failure test didn't fail as expected."
+    exit 1
+fi
+
+
 echo ""
 echo "* * * Whiskey test suite PASSED. * * *"
 exit 0
