@@ -123,6 +123,18 @@ exports['test_two_equals_one'] = function(test, assert) {
 }
 ```
 
+A simple example using the optional BDD module:
+``` javascript
+var bdd = require('whiskey').bdd.init(exports);
+var describe = bdd.describe;
+
+describe('the bdd module', function(it) {
+  it('supports it(), expect(), and toEqual()', function(expect) {
+    expect(true).toEqual(true);
+  });
+});
+```
+
 For more examples please check the `example/` folder.
 
 # Build status
