@@ -12,7 +12,7 @@ QUICK START
 The library defines one class, the OptionParser class. The class constructor takes one single argument, a list with a set of rules. Here is a quick example:
 
 	// Import the sys library
-	var sys = require('sys');
+	var util = require('util');
 
 	// Import the optparse library.
 	var optparse = require('optparse');
@@ -29,7 +29,7 @@ The library defines one class, the OptionParser class. The class constructor tak
 	// Hook the help option. The callback will be executed when the OptionParser 
 	// hits the switch ´´-h´´ or ´´--help´´. Each representatio
 	parser.on('help', function() {
-		sys.puts('Help');
+		util.puts('Help');
 	});
 	
 
