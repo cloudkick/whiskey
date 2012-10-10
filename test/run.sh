@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
-CWD=`pwd`
+CWD=`dirname $0`
+CWD=`cd "$APP_DIR";pwd`
+
+"${CWD}/bin/whiskey" --independent-tests "${CWD}/example/test-long-running-1.js ${CWD}/example/test-long-running-2.js"
+if [ $? -ne 0 ]; then
+    echo "long-running tests should pass"
+    exit 1
+fi
+
+"${CWD}/bin/whiskey" --independent-tests "${CWD}/example/test-long-running-1.js ${CWD}/example/test-long-running-2.js ${CWD}/example/test-failure.js"
+if [ $? -ne 2 ]; then
+    echo "2 tests should fail when running tests independently."
+    exit 1
+fi
 
 "${CWD}/bin/whiskey" --tests "${CWD}/example/test-success.js"
 
