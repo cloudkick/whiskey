@@ -7,7 +7,8 @@ Features
 ========
 
 * Each test file runs isolated in a separate process
-* Support for running multiple tests in parallel (`--concurrency` option)
+* Support for running multiple tests in parallel in a single suite (`--concurrency` option)
+* Support for running multiple suites in parallel (`--independent-tests` option)
 * Support for a test initialization function which is run before running the tests in a test file
 * Support for a test file timeout
 * setUp / tearDown function support
@@ -42,9 +43,15 @@ Usage
 
     whiskey [options] --tests "<test files>"
 
+    whiskey [options] --independent-tests "<test files>"
+
+    whiskey [options] --tests "<test files>"  --independent-tests "<test files>"
+
+
 #### Available options
 
- * **-t, --tests** - Whitespace separated list of test files to run
+ * **-t, --tests** - Whitespace separated list of test suites to run sequentially
+ * **-T, --independent-tests** - Whitespace separated list of test suites to run concurrently
  * **-ti, --test-init-file** - A path to the initialization file which must export
  `init` function and it is called in a child process *before running the tests in
  each test file
@@ -135,7 +142,7 @@ describe('the bdd module', function(it) {
 });
 ```
 
-For more examples please check the `example/` folder.
+For more examples please check the `example/` folder, and the `test/run.sh` script.
 
 # Build status
 
@@ -169,7 +176,10 @@ and put you into the Node debugger prompt.
 Whiskey will also by default set a breakpoint at the beginning of your test
 file.
 
-Note: This option can only be used with a single test file.
+Note: This option can only be used with a single test file.  Further, you
+cannot use the `--debug` and `--independent-tests` options together.  The
+semantics just don't make any sense.  To debug a test, make sure you invoke it
+with `--tests` instead.
 
 Troubleshooting
 ===============
