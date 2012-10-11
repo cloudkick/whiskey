@@ -4,4 +4,3 @@ exports.test_long_running_2 = function(test, assert) {
     test.finish();
   }, 5000);
 }
-
