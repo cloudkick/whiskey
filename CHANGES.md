@@ -1,6 +1,13 @@
 Changes
 =======
 
+* 11.10.2012 - v0.6.11:
+
+* Add `independent-tests` option to the runner which allows user to run multiple
+  test files in parallel.
+
+  [Samuel A. Falvo II]
+
 * Add an optional, minimal BDD idiom implementation.
    [Robert Chiniquy]
 
