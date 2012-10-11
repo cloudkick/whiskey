@@ -2,10 +2,16 @@
 CWD=`dirname $0`
 CWD=`cd "$APP_DIR";pwd`
 
+START=$(date +%s)
 "${CWD}/bin/whiskey" --independent-tests "${CWD}/example/test-long-running-1.js ${CWD}/example/test-long-running-2.js"
 if [ $? -ne 0 ]; then
     echo "long-running tests should pass"
     exit 1
+fi
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+if [ $DIFF -ge 6 ]; then
+    echo "Total test execution time should be less than 6 seconds (assuming code hasn't been changed.)"
 fi
 
 "${CWD}/bin/whiskey" --independent-tests "${CWD}/example/test-long-running-1.js ${CWD}/example/test-long-running-2.js ${CWD}/example/test-failure.js"
