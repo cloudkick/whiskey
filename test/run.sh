@@ -10,7 +10,7 @@ if [ $? -ne 0 ]; then
 fi
 END=$(date +%s)
 DIFF=$(( $END - $START ))
-if [ $DIFF -ge 6 ]; then
+if [ $DIFF -ge 7 ]; then
     echo "Total test execution time should be less than 6 seconds (assuming code hasn't been changed.)"
     exit 1
 fi
