@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "sprintf": ">= 0.1.1",
-    "async": ">= 0.1.18",
+    "async": ">= 0.1.22",
     "magic-templates": "= 0.1.1",
     "rimraf": "= 1.0.1",
     "terminal": "= 0.1.3",
