@@ -82,8 +82,8 @@ fi
 
 "${CWD}/bin/whiskey" --tests "${CWD}/example/test-setup-fail.js"
 
-if [ $? -ne 2 ]; then
-    echo "2 tests should fail"
+if [ $? -ne 3 ]; then
+    echo "3 tests should fail"
     exit 1
 fi
 
