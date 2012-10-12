@@ -1,5 +1,25 @@
 #!/usr/bin/env bash
-CWD=`pwd`
+CWD=`dirname $0`
+CWD=`cd "$APP_DIR";pwd`
+
+START=$(date +%s)
+"${CWD}/bin/whiskey" -m 2 --independent-tests "${CWD}/example/test-long-running-1.js ${CWD}/example/test-long-running-2.js"
+if [ $? -ne 0 ]; then
+    echo "long-running tests should pass"
+    exit 1
+fi
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+if [ $DIFF -ge 7 ]; then
+    echo "Total test execution time should be less than 6 seconds (assuming code hasn't been changed.)"
+    exit 1
+fi
+
+"${CWD}/bin/whiskey" --independent-tests "${CWD}/example/test-long-running-1.js ${CWD}/example/test-long-running-2.js ${CWD}/example/test-failure.js"
+if [ $? -ne 2 ]; then
+    echo "2 tests should fail when running tests independently."
+    exit 1
+fi
 
 "${CWD}/bin/whiskey" --tests "${CWD}/example/test-success.js"
 
