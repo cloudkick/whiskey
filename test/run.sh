@@ -3,20 +3,24 @@ CWD=`dirname $0`
 CWD=`cd "$APP_DIR";pwd`
 W="${CWD}/bin/whiskey"
 E="${CWD}/example"
+ANY_SUITE="--tests $E/test-skipped.js"
 
-$W -g
+# https://one.rackspace.com/display/~sam5373/Whiskey+Change+Proposal+2012-Oct-16
+# TPID 31
+$W -g ${ANY_SUITE}
 if [ $? -eq 0 ]; then
     echo "Missing parameter should cause whiskey to fail."
     exit 1
 fi
 
-$W --global-setup-teardown
+$W --global-setup-teardown ${ANY_SUITE}
 if [ $? -eq 0 ]; then
     echo "Missing parameter should cause whiskey to fail."
     exit 1
 fi
 
-$W -g $E/empty-global-setup-teardown.js
+# TPID 11
+$W -g $E/empty-global-setup-teardown.js ${ANY_SUITE}
 if [ $? -ne 0 ]; then
     echo "An empty global setup/teardown file should be syntactically correct."
     echo "Also, a file used as such, but which doesn't export the appropriate"
@@ -24,11 +28,18 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-$W --global-setup-teardown $E/empty-global-setup-teardown.js
+$W --global-setup-teardown $E/empty-global-setup-teardown.js ${ANY_SUITE}
 if [ $? -ne 0 ]; then
     echo "An empty global setup/teardown file should be syntactically correct."
     echo "Also, a file used as such, but which doesn't export the appropriate"
     echo "procedures (globalSetUp or globalTearDown) should behave the same way."
+    exit 1
+fi
+
+# TPID 21
+$W -g $E/malformed-javascript-source.js ${ANY_SUITE}
+if [ $? -eq 0 ]; then
+    echo "A malformed source should cause Whiskey to die early."
     exit 1
 fi
 
