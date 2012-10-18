@@ -6,6 +6,30 @@ E="${CWD}/example"
 ANY_SUITE="--tests $E/test-skipped.js"
 
 # https://one.rackspace.com/display/~sam5373/Whiskey+Change+Proposal+2012-Oct-16
+# TPID 51
+# $W -g $E/local-setup.js ${ANY_SUITE} >/tmp/output 2>&1
+# if [ $? -ne 0 ]; then
+#     echo "Expected invokation of global setup to not harm Whiskey."
+#     exit 1
+# fi
+# grep "globalSetUp was here" /tmp/output >/dev/null 2>&1
+# if [ $? -ne 1 ]; then
+#     echo "Expected localSetUp to have been ignored."
+#     exit 1
+# fi
+
+# TPID 41
+$W -g $E/global-setup.js ${ANY_SUITE} >/tmp/output 2>&1
+if [ $? -ne 0 ]; then
+    echo "Expected invokation of global setup to not harm Whiskey."
+    exit 1
+fi
+grep "globalSetUp was here" /tmp/output >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "Expected globalSetUp to have been invoked."
+    exit 1
+fi
+
 # TPID 31
 $W -g ${ANY_SUITE}
 if [ $? -eq 0 ]; then
