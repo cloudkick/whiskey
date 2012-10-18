@@ -10,6 +10,28 @@ if [ $? -eq 0 ]; then
     exit 1
 fi
 
+$W --global-setup-teardown
+if [ $? -eq 0 ]; then
+    echo "Missing parameter should cause whiskey to fail."
+    exit 1
+fi
+
+$W -g $E/empty-global-setup-teardown.js
+if [ $? -ne 0 ]; then
+    echo "An empty global setup/teardown file should be syntactically correct."
+    echo "Also, a file used as such, but which doesn't export the appropriate"
+    echo "procedures (globalSetUp or globalTearDown) should behave the same way."
+    exit 1
+fi
+
+$W --global-setup-teardown $E/empty-global-setup-teardown.js
+if [ $? -ne 0 ]; then
+    echo "An empty global setup/teardown file should be syntactically correct."
+    echo "Also, a file used as such, but which doesn't export the appropriate"
+    echo "procedures (globalSetUp or globalTearDown) should behave the same way."
+    exit 1
+fi
+
 START=$(date +%s)
 $W -m 2 --independent-tests "$E/test-long-running-1.js $E/test-long-running-2.js"
 if [ $? -ne 0 ]; then
