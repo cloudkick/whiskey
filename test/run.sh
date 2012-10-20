@@ -5,15 +5,12 @@ W="${CWD}/bin/whiskey"
 E="${CWD}/example"
 ANY_SUITE="--tests $E/test-skipped.js"
 
-# https://one.rackspace.com/display/~sam5373/Whiskey+Change+Proposal+2012-Oct-16
-# TPID 131d
 $W -g ./example/global-setup.js ${ANY_SUITE} >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
     echo "-g/--global-setup-teardown must base its paths from the invoking CWD"
     exit 1
 fi
 
-# TPID 111
 $W --tests $E/global-teardown.js >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
     echo "A test suite without any tests should not break Whiskey."
@@ -25,7 +22,6 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
-# TPID 101
 $W --tests $E/global-setup.js >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
     echo "A test suite without any tests should not break Whiskey."
@@ -37,7 +33,6 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
-# TPID 91
 $W -g $E/local-teardown.js ${ANY_SUITE} >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
     echo "A file with a 'localTearDown' procedure should not kill Whiskey"
@@ -49,14 +44,12 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
-# TPID 81
 $W -g $E/global-teardown-with-exception.js ${ANY_SUITE} >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
     echo "Exceptions raised in globalTearDown should not kill Whiskey run."
     exit 1
 fi
 
-# TPID 71
 $W -g $E/global-teardown.js ${ANY_SUITE} >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
     echo "Expected invokation of global teardown to not harm Whiskey."
@@ -68,21 +61,18 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# TPID 121d
 $W -g $E/global-setup-with-failed-assertion.js ${ANY_SUITE}
 if [ $? -eq 0 ]; then
     echo "An assertion failure inside a global setup procedure should cause a test failure."
     exit 1
 fi
 
-# TPID 61
 $W -g $E/global-setup-with-exception.js ${ANY_SUITE}
 if [ $? -eq 0 ]; then
     echo "An exception inside a global setup procedure should cause a test failure."
     exit 1
 fi
 
-# TPID 51
 $W -g $E/local-setup.js ${ANY_SUITE} >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
     echo "Expected invokation of global setup to not harm Whiskey."
@@ -94,7 +84,6 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
-# TPID 41
 $W -g $E/global-setup.js ${ANY_SUITE} >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
     echo "Expected invokation of global setup to not harm Whiskey."
@@ -106,7 +95,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# TPID 31
 $W -g ${ANY_SUITE}
 if [ $? -eq 0 ]; then
     echo "Missing parameter should cause whiskey to fail."
@@ -119,7 +107,6 @@ if [ $? -eq 0 ]; then
     exit 1
 fi
 
-# TPID 11
 $W -g $E/empty-global-setup-teardown.js ${ANY_SUITE}
 if [ $? -ne 0 ]; then
     echo "An empty global setup/teardown file should be syntactically correct."
@@ -136,7 +123,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# TPID 21
 $W -g $E/malformed-javascript-source.js ${ANY_SUITE}
 if [ $? -eq 0 ]; then
     echo "A malformed source should cause Whiskey to die early."

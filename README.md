@@ -176,6 +176,7 @@ exports['globalSetUp'] = function(test, assert) {
 
 exports['globalTearDown'] = function(test, assert) {
   // Drop database here...
+  test.finish();
 }
 ```
 
