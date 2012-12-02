@@ -79,6 +79,16 @@ exports['test_spyon_count_correct'] = function (test, assert) {
   test.finish();
 };
 
+exports['test_spyon_with_arguments_correct'] = function (test, assert) {
+  var foo, arr;
+  foo = new Foo();
+  arr = ['a', 'b', null];
+  test.spy.on('setBar', foo);
+  foo.setBar(arr);
+  assert.ok(test.spy.called('setBar').with(arr));
+  test.spy.clear('setBar', foo);
+  test.finish();
+};
 
 exports['test_spyon_accepts_function'] = function (test, assert) {
   var foo, func, set;
