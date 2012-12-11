@@ -20,7 +20,7 @@ var fs = require('fs');
 
 var dirPath = path.join(process.cwd(), 'example/test-123456');
 
-exports['init'] = function(callback) {
+exports['initialize'] = function(callback) {
   fs.mkdir(dirPath, 0655, function(err) {
     callback();
   });
