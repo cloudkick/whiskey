@@ -1,6 +1,13 @@
 Changes
 =======
 
+* in development:
+
+* Add support for spying on the arguments with which a function has been 
+  called.
+
+  [Michael Bird]
+
 * 11.10.2012 - v0.6.11:
 
 * Add `independent-tests` option to the runner which allows user to run multiple

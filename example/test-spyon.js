@@ -64,7 +64,7 @@ exports['test_spyon_returns_right'] = function(test, assert) {
   test.finish();
 };
 
-exports['test_spyon_count_correct'] = function (test, assert) {
+exports['test_spyon_count_correct'] = function(test, assert) {
   var foo = new Foo();
   test.spy.on('setFoo', foo);
   foo.setFoo();
@@ -79,8 +79,29 @@ exports['test_spyon_count_correct'] = function (test, assert) {
   test.finish();
 };
 
+exports['test_spyon_with_arguments_correct'] = function(test, assert) {
+  var foo, arr;
+  foo = new Foo();
+  arr = ['a', 'b', null];
+  test.spy.on('setBar', foo);
+  foo.setBar(arr);
+  assert.ok(test.spy.called('setBar').with(arr));
+  test.spy.clear('setBar', foo);
+  test.finish();
+};
 
-exports['test_spyon_accepts_function'] = function (test, assert) {
+exports['test_spyon_with_arguments_incorrect'] = function(test, assert) {
+  var foo, arr;
+  foo = new Foo();
+  arr = ['a', 'b', null];
+  test.spy.on('setBar', foo);
+  foo.setBar(['c']);
+  assert.ok(!test.spy.called('setBar').with(arr));
+  test.spy.clear('setBar', foo);
+  test.finish();
+};
+
+exports['test_spyon_accepts_function'] = function(test, assert) {
   var foo, func, set;
   foo = new Foo();
   set = false;
@@ -94,7 +115,7 @@ exports['test_spyon_accepts_function'] = function (test, assert) {
   test.finish();
 };
 
-exports['test_spyon_reapplies_original_function'] = function (test, assert) {
+exports['test_spyon_reapplies_original_function'] = function(test, assert) {
   var foo, func;
   foo = new Foo();
   func = foo.setFoo;
@@ -104,7 +125,7 @@ exports['test_spyon_reapplies_original_function'] = function (test, assert) {
   test.finish();
 };
 
-exports['test_spyon_reapplies_given_function'] = function (test, assert) {
+exports['test_spyon_reapplies_given_function'] = function(test, assert) {
   var foo, func, set;
   foo = new Foo();
   set = false;
