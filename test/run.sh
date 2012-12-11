@@ -304,6 +304,13 @@ if [ $? -ne 4 ]; then
     exit 1
 fi
 
+"${CWD}/bin/whiskey" --timeout 1000 \
+--tests "${CWD}/example/test-initialize-and-finalize-function.js"
+
+if [ $? -ne 0 ]; then
+    echo "test should have passed."
+    exit 1
+fi
 
 echo ""
 echo "* * * Whiskey test suite PASSED. * * *"
