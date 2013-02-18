@@ -88,28 +88,29 @@ Test File Examples
 
 A simple example (success):
 
-``` javascript
+```javascript
 var called = 0;
 
-exports['test_async_one_equals_one'] = function(test, assert) {
+exports.test_async_one_equals_one = function(test, assert) {
   setTimeout(function() {
     assert.equal(1, 1);
     called++;
     test.finish();
   }, 1000);
-}
+};
 
-exports['tearDown'] = function(test, assert) {
+exports.tearDown = function(test, assert) {
   assert.equal(called, 1);
   test.finish();
-}
+};
 ```
 
 A simple example (skipping a test):
 
-``` javascript
+```javascript
 var dbUp = false;
-exports['test_query'] = function(test, assert) {
+
+exports.test_query = function(test, assert) {
   if (!dbUp) {
     test.skip('Database is not up, skipping...');
     return;
@@ -117,21 +118,20 @@ exports['test_query'] = function(test, assert) {
 
   assert.equal(2, 1);
   test.finish();
-}
+};
 ```
-
 
 A simple example (failure):
 
-``` javascript
-exports['test_two_equals_one'] = function(test, assert) {
+```javascript
+exports.test_two_equals_one = function(test, assert) {
   assert.equal(2, 1);
   test.finish();
-}
+};
 ```
 
 A simple example using the optional BDD module:
-``` javascript
+```javascript
 var bdd = require('whiskey').bdd.init(exports);
 var describe = bdd.describe;
 
@@ -203,7 +203,7 @@ If your test gets reported as "timeout" instead of "failure" your test code most
 likely looks similar to the one below:
 
 ```javascript
-exports["test failure"] = function(test, assert){
+exports.test_failure = function(test, assert){
   setTimeout(function() {
     throw "blaaaaah";
     test.finish();
