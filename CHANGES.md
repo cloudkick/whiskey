@@ -1,7 +1,7 @@
 Changes
 =======
 
-* in development:
+* 18.02.2013 - v0.6.12:
 
 * Add support for spying on the arguments with which a function has been 
   called.
