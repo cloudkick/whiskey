@@ -85,6 +85,17 @@ exports['test_spyon_with_arguments_correct'] = function(test, assert) {
   arr = ['a', 'b', null];
   test.spy.on('setBar', foo);
   foo.setBar(arr);
+  assert.ok(test.spy.called('setBar').withArgs(arr));
+  test.spy.clear('setBar', foo);
+  test.finish();
+};
+
+exports['test_spyon_with_arguments_alias'] = function(test, assert) {
+  var foo, arr;
+  foo = new Foo();
+  arr = ['a', 'b', null];
+  test.spy.on('setBar', foo);
+  foo.setBar(arr);
   assert.ok(test.spy.called('setBar').with(arr));
   test.spy.clear('setBar', foo);
   test.finish();
@@ -96,7 +107,7 @@ exports['test_spyon_with_arguments_incorrect'] = function(test, assert) {
   arr = ['a', 'b', null];
   test.spy.on('setBar', foo);
   foo.setBar(['c']);
-  assert.ok(!test.spy.called('setBar').with(arr));
+  assert.ok(!test.spy.called('setBar').withArgs(arr));
   test.spy.clear('setBar', foo);
   test.finish();
 };
