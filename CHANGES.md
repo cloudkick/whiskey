@@ -1,6 +1,12 @@
 Changes
 =======
 
+* 15.04.2013 - v0.7.0
+
+* Add support for global setUp and tearDown. - https://github.com/cloudkick/whiskey/pull/49
+
+  [Samuel A. Falvo II]
+
 * 18.02.2013 - v0.6.13:
 
 * Change `with` on the `SpyOn` object to `withArgs` because `with` is a reserved keyword.
