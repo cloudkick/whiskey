@@ -17,4 +17,5 @@
 
 exports.bdd = require('./lib/bdd.js');
 exports.run = require('./lib/run.js').run;
+exports.suite = require('./lib/suite.js').suite;
 exports.installCoverageHandler = require('./lib/coverage').installCoverageHandler;
