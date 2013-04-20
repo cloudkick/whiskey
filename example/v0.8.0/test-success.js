@@ -35,19 +35,22 @@ var n;
 
 var success_suite = new Suite(null)
 success_suite.before(function() {
-  console.log("success_suite before");
+  console.log("BEFORE 0 success_suite")
   n = 0;
 });
 
 success_suite.testcase(function() {
-  console.log("success_suite case");
+  console.log("CASE 0 0 success_suite")
 });
 
 success_suite.testcase(function() {
-  console.log("success_suite case 2");
+  console.log("CASE 0 1 success_suite")
   this.assert.equal(2, 2);
 });
 
+success_suite.after(function() {
+  console.log("AFTER 0 success_suite")
+});
 
 /* Our first test depends upon the global state, and mutates it.  As a result,
  * we place an after-method at this scoping level.
@@ -68,15 +71,19 @@ success_suite.testcase(function() {
 
 var true_equals_true = new Suite(success_suite);
 true_equals_true.testcase(function() {
-  console.log("true_equals_true testcase");
+  console.log("CASE 1 0 true_equals_true")
   this.assert.ok(n === 0);
   n++;
+});
+
+true_equals_true.before(function() {
+  console.log("BEFORE 1 true_equals_true")
 })
 
-true_equals_true.after(function() {
-  console.log("true_equals_true after");
-  this.assert.ok(n === 1);
-});
+//true_equals_true.after(function() {
+//  console.log("AFTER 1 true_equals_true")
+//  this.assert.ok(n === 1);
+//});
 
 
 /* Our second test does not depend upon the global state, and does not mutate it.
@@ -84,16 +91,20 @@ true_equals_true.after(function() {
  * global state remains intact.
  */
 
-var two_plus_two_equals_four = new Suite(success_suite);
-two_plus_two_equals_four.testcase(function() {
-  console.log("two_plus_two testcase");
-  this.assert.equal(2+2, 4);
-});
-
-two_plus_two_equals_four.after(function() {
-  console.log("two_plus_two after");
-  this.assert.equal(n, 0);
-});
+//var two_plus_two_equals_four = new Suite(success_suite);
+//two_plus_two_equals_four.testcase(function() {
+//  console.log("CASE 2 two_plus_two")
+//  this.assert.equal(2+2, 4);
+//});
+//
+//two_plus_two_equals_four.before(function() {
+//  console.log("BEFORE 1 two_plus_two_equals_four")
+//})
+//
+//two_plus_two_equals_four.after(function() {
+//  console.log("AFTER 2 two_plus_two")
+//  this.assert.equal(n, 0);
+//});
 
 
 /* Above, we declared our subsuites statically as children of the success_suite
@@ -114,10 +125,10 @@ two_plus_two_equals_four.after(function() {
  * however; you should pick one method or another.
  */
 
-success_suite.add_suites([
-    true_equals_true,
-    two_plus_two_equals_four
-]);
+//success_suite.add_suites([
+//    two_plus_two_equals_four,
+//    true_equals_true
+//]);
 
 /* So now that we have our intended object graph, we now compile it into
  * compatible Whiskey infrastructure.  This compilation step is intended to be
