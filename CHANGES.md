@@ -1,6 +1,10 @@
 Changes
 =======
 
+* 07.05.2013 - v0.7.1
+
+* Correctly report exception if a test throws a string.
+
 * 15.04.2013 - v0.7.0
 
 * Add support for global setUp and tearDown. - https://github.com/cloudkick/whiskey/pull/49
