@@ -432,7 +432,7 @@ if [ $? -ne 4 ]; then
     exit 1
 fi
 
-$W --tests "$E/test-throw-string"
+$W --tests "$E/test-throw-string.js"
 
 if [ $? -ne 2 ]; then
     echo "2 tests should have failed"
