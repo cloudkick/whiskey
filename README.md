@@ -11,7 +11,8 @@ Features
 * Support for running multiple suites in parallel (`--independent-tests` option)
 * Support for a test initialization function which is run before running the tests in a test file
 * Support for a test file timeout
-* setUp / tearDown function support
+* Per-suite setUp / tearDown function support
+* Per-session, or global, setUp / tearDown function support
 * Support for different test reporters (cli, tap)
 * Support for code coverage (cli reporter, html reporter)
 * Support for reporting variables which have leaked into a global scope
@@ -52,11 +53,13 @@ Usage
 
  * **-t, --tests** - Whitespace separated list of test suites to run sequentially
  * **-T, --independent-tests** - Whitespace separated list of test suites to run concurrently
+ * **-m, --max-suites NUMBER** - The number of concurrently executing independent test suites (defaults to 5)
  * **-ti, --test-init-file** - A path to the initialization file which must export
  `init` function and it is called in a child process *before running the tests in
  each test file
  * **-c, --chdir** - An optional path to which the child process will chdir to before
  running the tests
+ * **-g, --global-setup-teardown STRING** - Specifies the file containing the globalSetUp and globalTearDown procedures.
  * **--timeout [NUMBER]** - How long to wait for tests to complete before timing
  out
  * **--failfast** - Stop running the tests on a first failure or a timeout
@@ -83,33 +86,55 @@ Usage
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
 
+A Note about setUp and tearDown
+===============================
+
+Presently, two kinds of setup and teardown procedures exist with Whiskey.
+setUp and tearDown work on a per-suite basis; that is, Whiskey invokes setUp
+prior to running _all_ tests in a given Javascript file, called a suite, and
+invokes tearDown after all tests in that file have been exhausted.  If you run
+multiple suites in parallel (e.g., via the -T/--independent-tests option),
+you'll get concurrent execution of setups and teardowns as well.
+
+Sometimes, though, you need longer-lived environmental configurations, or you
+need safe resource sharing between entire batches of independently running
+tests.  For these, you'll want to use globalSetUp and globalTearDown.
+
+ * When do I use setUp / tearDown?
+   * When a suite's runtime environment **does not** influence other running suites.
+   * **Example:** . . .
+ * When do I use globalSetUp / globalTearDown ?
+   * When a suite's runtime environment **can potentially** interfere with other, concurrently running suites.
+   * **Example:** Attempting to run multiple suites in parallel which rely on a Cassandra schema being in place, and each attempting to reset the schema to a known state on a single Cassandra instance, you'll get Cassandra schema version errors.  Using globalSetUp prevents this by running the schema reset code exactly once for _all_ tests.
+
 Test File Examples
 ==================
 
 A simple example (success):
 
-``` javascript
+```javascript
 var called = 0;
 
-exports['test_async_one_equals_one'] = function(test, assert) {
+exports.test_async_one_equals_one = function(test, assert) {
   setTimeout(function() {
     assert.equal(1, 1);
     called++;
     test.finish();
   }, 1000);
-}
+};
 
-exports['tearDown'] = function(test, assert) {
+exports.tearDown = function(test, assert) {
   assert.equal(called, 1);
   test.finish();
-}
+};
 ```
 
 A simple example (skipping a test):
 
-``` javascript
+```javascript
 var dbUp = false;
-exports['test_query'] = function(test, assert) {
+
+exports.test_query = function(test, assert) {
   if (!dbUp) {
     test.skip('Database is not up, skipping...');
     return;
@@ -117,21 +142,20 @@ exports['test_query'] = function(test, assert) {
 
   assert.equal(2, 1);
   test.finish();
-}
+};
 ```
-
 
 A simple example (failure):
 
-``` javascript
-exports['test_two_equals_one'] = function(test, assert) {
+```javascript
+exports.test_two_equals_one = function(test, assert) {
   assert.equal(2, 1);
   test.finish();
-}
+};
 ```
 
 A simple example using the optional BDD module:
-``` javascript
+```javascript
 var bdd = require('whiskey').bdd.init(exports);
 var describe = bdd.describe;
 
@@ -140,6 +164,20 @@ describe('the bdd module', function(it) {
     expect(true).toEqual(true);
   });
 });
+```
+
+A simple example demonstrating how to use global setup and teardown functionality:
+``` javascript
+exports['globalSetUp'] = function(test, assert) {
+  // Set up database schema here...
+  // Push known data set to database here...
+  test.finish();
+}
+
+exports['globalTearDown'] = function(test, assert) {
+  // Drop database here...
+  test.finish();
+}
 ```
 
 For more examples please check the `example/` folder, and the `test/run.sh` script.
@@ -203,7 +241,7 @@ If your test gets reported as "timeout" instead of "failure" your test code most
 likely looks similar to the one below:
 
 ```javascript
-exports["test failure"] = function(test, assert){
+exports.test_failure = function(test, assert){
   setTimeout(function() {
     throw "blaaaaah";
     test.finish();

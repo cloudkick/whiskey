@@ -1,9 +1,137 @@
 #!/usr/bin/env bash
 CWD=`dirname $0`
 CWD=`cd "$APP_DIR";pwd`
+W="${CWD}/bin/whiskey"
+E="${CWD}/example"
+ANY_SUITE="--tests $E/test-skipped.js"
+echo $ANY_SUITE
+
+$W -g ./example/global-setup.js ${ANY_SUITE} >/tmp/output 2>&1
+if [ $? -ne 0 ]; then
+    echo "-g/--global-setup-teardown must base its paths from the invoking CWD"
+    exit 1
+fi
+
+$W --tests $E/global-teardown.js >/tmp/output 2>&1
+if [ $? -ne 0 ]; then
+    echo "A test suite without any tests should not break Whiskey."
+    exit 1
+fi
+grep "globalTearDown was here" /tmp/output >/dev/null 2>&1
+if [ $? -ne 1 ]; then
+    echo "Expected globalTearDown to be ignored."
+    exit 1
+fi
+
+$W --tests $E/global-setup.js >/tmp/output 2>&1
+if [ $? -ne 0 ]; then
+    echo "A test suite without any tests should not break Whiskey."
+    exit 1
+fi
+grep "globalSetUp was here" /tmp/output >/dev/null 2>&1
+if [ $? -ne 1 ]; then
+    echo "Expected globalSetUp to be ignored."
+    exit 1
+fi
+
+$W -g $E/local-teardown.js ${ANY_SUITE} >/tmp/output 2>&1
+if [ $? -ne 0 ]; then
+    echo "A file with a 'localTearDown' procedure should not kill Whiskey"
+    exit 1
+fi
+grep "globalTearDown was here" /tmp/output >/dev/null 2>&1
+if [ $? -ne 1 ]; then
+    echo "Expected localTearDown to have been ignored."
+    exit 1
+fi
+
+$W -g $E/global-teardown-with-exception.js ${ANY_SUITE} >/tmp/output 2>&1
+if [ $? -ne 0 ]; then
+    echo "Exceptions raised in globalTearDown should not kill Whiskey run."
+    exit 1
+fi
+
+$W -g $E/global-teardown.js ${ANY_SUITE} >/tmp/output 2>&1
+if [ $? -ne 0 ]; then
+    echo "Expected invokation of global teardown to not harm Whiskey."
+    exit 1
+fi
+grep "globalTearDown was here" /tmp/output >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "Expected globalTearDown to have been invoked."
+    exit 1
+fi
+
+$W -g $E/global-setup-with-failed-assertion.js ${ANY_SUITE}
+if [ $? -eq 0 ]; then
+    echo "An assertion failure inside a global setup procedure should cause a test failure."
+    exit 1
+fi
+
+$W -g $E/global-setup-with-exception.js ${ANY_SUITE}
+if [ $? -eq 0 ]; then
+    echo "An exception inside a global setup procedure should cause a test failure."
+    exit 1
+fi
+
+$W -g $E/local-setup.js ${ANY_SUITE} >/tmp/output 2>&1
+if [ $? -ne 0 ]; then
+    echo "Expected invokation of global setup to not harm Whiskey."
+    exit 1
+fi
+grep "globalSetUp was here" /tmp/output >/dev/null 2>&1
+if [ $? -ne 1 ]; then
+    echo "Expected localSetUp to have been ignored."
+    exit 1
+fi
+
+$W -g $E/global-setup.js ${ANY_SUITE} >/tmp/output 2>&1
+if [ $? -ne 0 ]; then
+    echo "Expected invokation of global setup to not harm Whiskey."
+    exit 1
+fi
+grep "globalSetUp was here" /tmp/output >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "Expected globalSetUp to have been invoked."
+    exit 1
+fi
+
+$W -g ${ANY_SUITE}
+if [ $? -eq 0 ]; then
+    echo "Missing parameter should cause whiskey to fail."
+    exit 1
+fi
+
+$W --global-setup-teardown ${ANY_SUITE}
+if [ $? -eq 0 ]; then
+    echo "Missing parameter should cause whiskey to fail."
+    exit 1
+fi
+
+$W -g $E/empty-global-setup-teardown.js ${ANY_SUITE}
+if [ $? -ne 0 ]; then
+    echo "An empty global setup/teardown file should be syntactically correct."
+    echo "Also, a file used as such, but which doesn't export the appropriate"
+    echo "procedures (globalSetUp or globalTearDown) should behave the same way."
+    exit 1
+fi
+
+$W --global-setup-teardown $E/empty-global-setup-teardown.js ${ANY_SUITE}
+if [ $? -ne 0 ]; then
+    echo "An empty global setup/teardown file should be syntactically correct."
+    echo "Also, a file used as such, but which doesn't export the appropriate"
+    echo "procedures (globalSetUp or globalTearDown) should behave the same way."
+    exit 1
+fi
+
+$W -g $E/malformed-javascript-source.js ${ANY_SUITE}
+if [ $? -eq 0 ]; then
+    echo "A malformed source should cause Whiskey to die early."
+    exit 1
+fi
 
 START=$(date +%s)
-"${CWD}/bin/whiskey" -m 2 --independent-tests "${CWD}/example/test-long-running-1.js ${CWD}/example/test-long-running-2.js"
+$W -m 2 --independent-tests "$E/test-long-running-1.js $E/test-long-running-2.js"
 if [ $? -ne 0 ]; then
     echo "long-running tests should pass"
     exit 1
@@ -15,57 +143,57 @@ if [ $DIFF -ge 7 ]; then
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --independent-tests "${CWD}/example/test-long-running-1.js ${CWD}/example/test-long-running-2.js ${CWD}/example/test-failure.js"
+$W --independent-tests "$E/test-long-running-1.js $E/test-long-running-2.js $E/test-failure.js"
 if [ $? -ne 2 ]; then
     echo "2 tests should fail when running tests independently."
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --tests "${CWD}/example/test-success.js"
+$W --tests "$E/test-success.js"
 
 if [ $? -ne 0 ]; then
     echo "tests should pass"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --tests "${CWD}/example/test-failure.js"
+$W --tests "$E/test-failure.js"
 
 if [ $? -ne 2 ]; then
     echo "2 tests should fail"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --failfast --timeout 500 \
-  --tests --concurrency 100 "${CWD}/example/test-failure.js ${CWD}/example/test-timeout.js"
+$W --failfast --timeout 500 \
+  --tests --concurrency 100 "$E/test-failure.js $E/test-timeout.js"
 
 if [ $? -ne 1 ]; then
     echo "1 test should fail"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --failfast --timeout 500 \
-  --tests "${CWD}/example/test-timeout.js ${CWD}/example/test-failure.js ${CWD}/example/test-timeout.js"
+$W --failfast --timeout 500 \
+  --tests "$E/test-timeout.js $E/test-failure.js $E/test-timeout.js"
 
 if [ $? -ne 1 ]; then
     echo "1 test should fail"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --timeout 1000 --tests "${CWD}/example/test-timeout.js"
+$W --timeout 1000 --tests "$E/test-timeout.js"
 
 if [ ! $? -eq 1 ]; then
     echo "test should time out"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --timeout 1000 --tests "${CWD}/example/test-timeout-blocking.js"
+$W --timeout 1000 --tests "$E/test-timeout-blocking.js"
 
 if [ ! $? -eq 1 ]; then
     echo "test should time out"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --tests "${CWD}/example/test-setup-and-teardown.js"
+$W --tests "$E/test-setup-and-teardown.js"
 
 if [ $? -ne 0 ]; then
     echo "test should pass"
@@ -73,14 +201,14 @@ if [ $? -ne 0 ]; then
 fi
 
 # Test file does not exist
-"${CWD}/bin/whiskey" --tests "${CWD}/example/test-inexistent.js"
+$W --tests "$E/test-inexistent.js"
 
 if [ $? -ne 1 ]; then
     echo "1 test should fail"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --tests "${CWD}/example/test-setup-fail.js"
+$W --tests "$E/test-setup-fail.js"
 
 if [ $? -ne 3 ]; then
     echo "3 tests should fail"
@@ -88,7 +216,7 @@ if [ $? -ne 3 ]; then
 fi
 
 # Test relative path
-"${CWD}/bin/whiskey" --tests "example/test-success.js"
+$W --tests "example/test-success.js"
 
 if [ $? -ne 0 ]; then
     echo "tests should pass."
@@ -96,7 +224,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Test multiple files
-"${CWD}/bin/whiskey" --tests "${CWD}/example/test-success.js ${CWD}/example/test-failure.js"
+$W --tests "$E/test-success.js $E/test-failure.js"
 
 if [ ! $? -gt 0 ]; then
     echo "2 tests should fail"
@@ -105,15 +233,15 @@ fi
 
 # Test test init file
 FOLDER_EXISTS=0
-rm -rf ${CWD}/example/test-123456
+rm -rf $E/test-123456
 
-"${CWD}/bin/whiskey" --test-init-file "${CWD}/example/init.js" --tests "${CWD}/example/test-success.js"
+$W --test-init-file "$E/init.js" --tests "$E/test-success.js"
 
-if [ -d ${CWD}/example/test-123456 ]; then
+if [ -d $E/test-123456 ]; then
   FOLDER_EXISTS=1
 fi
 
-rm -rf ${CWD}/example/test-123456
+rm -rf $E/test-123456
 
 if [ $? -ne 0 ] || [ ${FOLDER_EXISTS} -ne 1 ]; then
   echo ${FOLDER_EXISTS}
@@ -122,7 +250,7 @@ if [ $? -ne 0 ] || [ ${FOLDER_EXISTS} -ne 1 ]; then
 fi
 
 # test uncaught exceptions
-"${CWD}/bin/whiskey" --tests "${CWD}/example/test-uncaught.js"
+$W --tests "$E/test-uncaught.js"
 
 if [ $? -ne 5 ]; then
     echo "5 tests should fail"
@@ -130,14 +258,14 @@ if [ $? -ne 5 ]; then
 fi
 
 # Test chdir
-"${CWD}/bin/whiskey" --tests "${CWD}/example/test-chdir.js"
+$W --tests "$E/test-chdir.js"
 
 if [ $? -ne 1 ]; then
     echo "1 test should fail"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --tests "${CWD}/example/test-chdir.js" --chdir "${CWD}/example/"
+$W --tests "$E/test-chdir.js" --chdir "$E/"
 
 if [ $? -ne 0 ]; then
     echo "tests should pass y"
@@ -145,7 +273,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Test per test init function
-"${CWD}/bin/whiskey" --test-init-file "${CWD}/example/init-test.js" --tests "${CWD}/example/test-init-function.js"
+$W --test-init-file "$E/init-test.js" --tests "$E/test-init-function.js"
 
 if [ $? -ne 0 ]; then
     echo "tests should pass x"
@@ -153,7 +281,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Test init function timeout (callback in init function is not called)
-"${CWD}/bin/whiskey" --timeout 2000 --test-init-file "${CWD}/example/init-timeout.js" --tests "${CWD}/example/test-failure.js"
+$W --timeout 2000 --test-init-file "$E/init-timeout.js" --tests "$E/test-failure.js"
 
 if [ $? -ne 1 ]; then
     echo "1 test should fail (callback in init function is not called)"
@@ -161,7 +289,7 @@ if [ $? -ne 1 ]; then
 fi
 
 # Test setUp function timeout (setUp function .finish() is not called)
-"${CWD}/bin/whiskey" --timeout 1000 --tests "${CWD}/example/test-setup-timeout.js" --chdir "${CWD}/example/"
+$W --timeout 1000 --tests "$E/test-setup-timeout.js" --chdir "$E/"
 
 if [ $? -ne 1 ]; then
   echo "1 test should fail (setUp timeout)"
@@ -169,30 +297,30 @@ if [ $? -ne 1 ]; then
 fi
 
 # Test tearDown function timeout (tearDown function .finish() is not called)
-"${CWD}/bin/whiskey" --timeout 2000 --tests "${CWD}/example/test-teardown-timeout.js" --chdir "${CWD}/example/"
+$W --timeout 2000 --tests "$E/test-teardown-timeout.js" --chdir "$E/"
 
 if [ $? -ne 2 ]; then
     echo "1 test should fail (tearDown timeout)"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --timeout 2000 --tests "${CWD}/example/test-custom-assert-functions.js"
+$W --timeout 2000 --tests "$E/test-custom-assert-functions.js"
 
 if [ $? -ne 2 ]; then
     echo "2 tests should fail"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --timeout 2000 \
- --tests "${CWD}/example/test-custom-assert-functions.js" \
- --custom-assert-module "${CWD}/example/custom-assert-functions.js"
+$W --timeout 2000 \
+ --tests "$E/test-custom-assert-functions.js" \
+ --custom-assert-module "$E/custom-assert-functions.js"
 
 if [ $? -ne 1 ]; then
     echo "1 test should fail"
     exit 1
 fi
 
-"${CWD}/example/test-stdout-and-stderr-is-captured-on-timeout.js"
+"$E/test-stdout-and-stderr-is-captured-on-timeout.js"
 
 if [ $? -ne 0 ]; then
     echo "test file stdout and stderr was not properly captured during test timeout"
@@ -201,7 +329,7 @@ fi
 
 # Verify that when a test file timeout the tests which haven't time out are
 # reported properly
-"${CWD}/example/test-succeeded-tests-are-reported-on-timeout.js"
+"$E/test-succeeded-tests-are-reported-on-timeout.js"
 
 if [ $? -ne 0 ]; then
     echo "succeeded tests were not reported properly upon a test file timeout"
@@ -210,7 +338,7 @@ fi
 
 # Verify that coverage works properly
 if [ "$(which jscoverage)" ]; then
-  "${CWD}/example/test-jscoverage.js"
+  "$E/test-jscoverage.js"
 
   if [ $? -ne 0 ]; then
       echo "coverage does not work properly"
@@ -222,8 +350,8 @@ fi
 
 # Make sure that the child which blocks after call .finish() is killed and
 # timeout properly reported
-"${CWD}/bin/whiskey" --timeout 1000 \
- --tests "${CWD}/example/test-timeout-after-finish.js"
+$W --timeout 1000 \
+ --tests "$E/test-timeout-after-finish.js"
 
 if [ $? -ne 1 ]; then
     echo "1 test should timeout"
@@ -231,7 +359,7 @@ if [ $? -ne 1 ]; then
 fi
 
 # Scope leaks test (sequential and parallel mode)
-"${CWD}/example/test-leaks.js"
+"$E/test-leaks.js"
 
 if [ $? -ne 0 ]; then
     echo "scope leaks were not reported properly"
@@ -239,24 +367,24 @@ if [ $? -ne 0 ]; then
 fi
 
 # No test function is exported, it should quit immediately
-"${CWD}/bin/whiskey" --timeout 1000 \
- --tests "${CWD}/example/test-no-test-functions.js"
+$W --timeout 1000 \
+ --tests "$E/test-no-test-functions.js"
 
 if [ $? -ne 0 ]; then
     echo "test didn't exit with zero exit code"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --timeout 1000 \
- --tests "${CWD}/example/test-skipped.js"
+$W --timeout 1000 \
+ --tests "$E/test-skipped.js"
 
 if [ $? -ne 0 ]; then
     echo "test didn't exit with zero exit code"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --timeout 1000 \
- --tests "${CWD}/example/test-custom-assert-methods.js"
+$W --timeout 1000 \
+ --tests "$E/test-custom-assert-methods.js"
 
 if [ $? -ne 0 ]; then
     echo "test didn't exit with zero exit code"
@@ -264,7 +392,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Test pattern name matching
-"${CWD}/bin/whiskey" --timeout 1000 \
+$W --timeout 1000 \
  --tests "example.test-failure.test_one_is_not*"
 
 if [ $? -ne 1 ]; then
@@ -272,32 +400,32 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --timeout 1000 \
- --tests "${CWD}/example/test-getFilePathAndPattern.js"
+$W --timeout 1000 \
+ --tests "$E/test-getFilePathAndPattern.js"
 
 if [ $? -ne 0 ]; then
     echo "test didn't exit with zero exit code"
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --timeout 1000 \
- --tests "${CWD}/example/test-spyon.js"
+$W --timeout 1000 \
+ --tests "$E/test-spyon.js"
 
 if [ $? -ne 0 ]; then
     echo "Test didn't exit with zero exit code."
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --timeout 1000 \
---tests "${CWD}/example/test-bdd.js"
+$W --timeout 1000 \
+--tests "$E/test-bdd.js"
 
 if [ $? -ne 0 ]; then
     echo "BDD test didn't exit with zero exit code."
     exit 1
 fi
 
-"${CWD}/bin/whiskey" --timeout 1000 \
---tests "${CWD}/example/test-bdd-failures.js"
+$W --timeout 1000 \
+--tests "$E/test-bdd-failures.js"
 
 if [ $? -ne 4 ]; then
     echo "BDD failure test didn't fail as expected."
@@ -309,6 +437,13 @@ fi
 
 if [ $? -ne 0 ]; then
     echo "test should have passed."
+    exit 1
+fi
+
+$W --tests "$E/test-throw-string.js"
+
+if [ $? -ne 2 ]; then
+    echo "2 tests should have failed"
     exit 1
 fi
 

@@ -1,7 +1,23 @@
 Changes
 =======
 
-* in development:
+* 07.05.2013 - v0.7.1
+
+* Correctly report exception if a test throws a string.
+
+* 15.04.2013 - v0.7.0
+
+* Add support for global setUp and tearDown. - https://github.com/cloudkick/whiskey/pull/49
+
+  [Samuel A. Falvo II]
+
+* 18.02.2013 - v0.6.13:
+
+* Change `with` on the `SpyOn` object to `withArgs` because `with` is a reserved keyword.
+
+  [Bjorn Tipling]
+
+* 18.02.2013 - v0.6.12:
 
 * Add support for spying on the arguments with which a function has been 
   called.
