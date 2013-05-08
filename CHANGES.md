@@ -1,6 +1,6 @@
 # Changes
 
-## v0.7.1 (07.05.2013
+## v0.7.1 (07.05.2013)
 
 * Correctly report exception if a test throws a string.
 
@@ -31,14 +31,17 @@
   [Samuel A. Falvo II]
 
 * Add an optional, minimal BDD idiom implementation.
-   [Robert Chiniquy]
+
+  [Robert Chiniquy]
 
 * Send the SIGKILL signal instead of SIGTERM when killing child processes managed by the process runner.
-   [Robert Chiniquy]
+
+  [Robert Chiniquy]
 
 ## v0.6.10 (11.05.2012)
 
 * Add 'spy' functionality to the 'test' object.
+
   [Bjorn Tipling]
 
 ## v0.6.9 (06.05.2012)
@@ -83,10 +86,11 @@
 
 * Allow user to specify full path when using a JSON coverage reporter.
 
-* 16.12.2011 - v0.6.3:
+## v0.6.4 (16.12.2011)
+
   * Fix a race condition when using code coverage and instrumenting the code.
 
-* 01.12.2011 - v0.6.2
+## v0.6.2 (01.12.2011)
   * If an error occurs when the process runner is starting a processes,
     propagate it to the ProcessRunner.start callback. Patch by Ken Wronkiewicz.
 
