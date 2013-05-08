@@ -1,7 +1,8 @@
 # Whiskey
 
-Whiskey is a powerful test runner and process orchestration framework
-for NodeJS applications
+Whiskey is a powerful test runner for Node.js applications and a process
+orchestration framework which makes running integration tests with a lot of
+service / process dependencies easier.
 
 ## Features
 
