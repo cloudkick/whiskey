@@ -3,17 +3,17 @@
 ## v0.8.0
 
 * Make Whiskey behave more like other test runners and run `setUp` and
-`tearDown` function before and after every test run instead of running it once
-per test file.
+  `tearDown` function before and after every test run instead of running it once
+  per test file.
 
-Note: This change is breaking and backward incompatible. If you want to
-preserve old behavior, you need to migrate to a new `initialize` and `finalize`
-function. Those two functions behave the same as way `setUp` and `tearDown`
-did in older versions.
+  Note: This change is breaking and backward incompatible. If you want to
+  preserve old behavior, you need to migrate to a new `initialize` and `finalize`
+  function. Those two functions behave the same as way `setUp` and `tearDown`
+  did in older versions.
 
-For example.
+  For example.
 
-Old code:
+  Old code:
 
 ```javascript
 exports['setUp'] = function(test, assert) {
@@ -27,7 +27,7 @@ exports['tearDown'] = function(test, assert) {
 };
 ```
 
-New code (to preserve the old behavior):
+  New code (to preserve the old behavior):
 
 ```javascript
 exports['initialize'] = function(test, assert) {
@@ -40,8 +40,6 @@ exports['finalize'] = function(test, assert) {
   test.finish();
 };
 ```
-
-
 
 ## v0.7.1 (07.05.2013)
 
@@ -74,14 +72,17 @@ exports['finalize'] = function(test, assert) {
   [Samuel A. Falvo II]
 
 * Add an optional, minimal BDD idiom implementation.
-   [Robert Chiniquy]
+
+  [Robert Chiniquy]
 
 * Send the SIGKILL signal instead of SIGTERM when killing child processes managed by the process runner.
-   [Robert Chiniquy]
+
+  [Robert Chiniquy]
 
 ## v0.6.10 (11.05.2012)
 
 * Add 'spy' functionality to the 'test' object.
+
   [Bjorn Tipling]
 
 ## v0.6.9 (06.05.2012)
@@ -126,10 +127,11 @@ exports['finalize'] = function(test, assert) {
 
 * Allow user to specify full path when using a JSON coverage reporter.
 
-* 16.12.2011 - v0.6.3:
+## v0.6.4 (16.12.2011)
+
   * Fix a race condition when using code coverage and instrumenting the code.
 
-* 01.12.2011 - v0.6.2
+## v0.6.2 (01.12.2011)
   * If an error occurs when the process runner is starting a processes,
     propagate it to the ProcessRunner.start callback. Patch by Ken Wronkiewicz.
 
