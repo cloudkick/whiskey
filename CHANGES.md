@@ -11,9 +11,7 @@
   function. Those two functions behave the same as way `setUp` and `tearDown`
   did in older versions.
 
-  For example.
-
-  Old code:
+Old code (pre 0.8.0):
 
 ```javascript
 exports['setUp'] = function(test, assert) {
@@ -27,7 +25,7 @@ exports['tearDown'] = function(test, assert) {
 };
 ```
 
-  New code (to preserve the old behavior):
+New code (to preserve the old behavior, post 0.8.0):
 
 ```javascript
 exports['initialize'] = function(test, assert) {
