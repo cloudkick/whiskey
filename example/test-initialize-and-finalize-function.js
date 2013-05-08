@@ -15,13 +15,20 @@
  * limitations under the License.
  */
 
-var path = require('path');
-var fs = require('fs');
+var called = 0;
 
-var dirPath = path.join(process.cwd(), 'example/test-123456');
+exports['initialize'] = function(test, assert) {
+  called++;
+  test.finish();
+};
 
-exports['initialize'] = function(callback) {
-  fs.mkdir(dirPath, 0655, function(err) {
-    callback();
-  });
+exports['test_run'] = function(test, assert) {
+  assert.equal(called, 1);
+  called++;
+  test.finish();
+};
+
+exports['finalize'] = function(test, assert) {
+  assert.equal(called, 2);
+  test.finish();
 };
