@@ -1,17 +1,18 @@
-Whiskey
-=======
+# Whiskey
 
-Whiskey is a powerful test runner for NodeJS applications.
+Whiskey is a powerful test runner for Node.js applications and a process
+orchestration framework which makes running integration tests with a lot of
+service / process dependencies easier.
 
-Features
-========
+## Features
 
 * Each test file runs isolated in a separate process
 * Support for running multiple tests in parallel in a single suite (`--concurrency` option)
 * Support for running multiple suites in parallel (`--independent-tests` option)
 * Support for a test initialization function which is run before running the tests in a test file
 * Support for a test file timeout
-* Per-suite setUp / tearDown function support
+* Per-test `setUp` / `tearDown` function support
+* Per-suite (test file) `initialize` / `finalize` function support
 * Per-session, or global, setUp / tearDown function support
 * Support for different test reporters (cli, tap)
 * Support for code coverage (cli reporter, html reporter)
@@ -20,18 +21,15 @@ Features
 * Integration with node debugger
 * Support for generating Makefiles with different Whiskey targets
 
-Non NPM-installable Dependencies
-===============================
+## Non NPM-installable Dependencies
 
 * [node-jscoverage](https://github.com/Kami/node-jscoverage) (only required if `--coverage` option is used)
 
-Changes
-=======
+## Changes
 
 For changes please see [CHANGES.md](/cloudkick/whiskey/blob/master/CHANGES.md) file.
 
-Installation
-============
+## Installation
 
 Install it using npm:
 
@@ -39,8 +37,7 @@ Install it using npm:
 npm install whiskey
 ```
 
-Usage
-=====
+## Usage
 
     whiskey [options] --tests "<test files>"
 
@@ -49,7 +46,7 @@ Usage
     whiskey [options] --tests "<test files>"  --independent-tests "<test files>"
 
 
-#### Available options
+### Available options
 
  * **-t, --tests** - Whitespace separated list of test suites to run sequentially
  * **-T, --independent-tests** - Whitespace separated list of test suites to run concurrently
@@ -86,8 +83,7 @@ Usage
 Note: When specifying multiple test a list with the test paths must be quoted,
 for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
 
-A Note about setUp and tearDown
-===============================
+## A Note about setUp and tearDown
 
 Presently, two kinds of setup and teardown procedures exist with Whiskey.
 setUp and tearDown work on a per-suite basis; that is, Whiskey invokes setUp
@@ -98,7 +94,7 @@ you'll get concurrent execution of setups and teardowns as well.
 
 Sometimes, though, you need longer-lived environmental configurations, or you
 need safe resource sharing between entire batches of independently running
-tests.  For these, you'll want to use globalSetUp and globalTearDown.
+tests. For these, you'll want to use globalSetUp and globalTearDown.
 
  * When do I use setUp / tearDown?
    * When a suite's runtime environment **does not** influence other running suites.
@@ -107,8 +103,7 @@ tests.  For these, you'll want to use globalSetUp and globalTearDown.
    * When a suite's runtime environment **can potentially** interfere with other, concurrently running suites.
    * **Example:** Attempting to run multiple suites in parallel which rely on a Cassandra schema being in place, and each attempting to reset the schema to a known state on a single Cassandra instance, you'll get Cassandra schema version errors.  Using globalSetUp prevents this by running the schema reset code exactly once for _all_ tests.
 
-Test File Examples
-==================
+## Test File Examples
 
 A simple example (success):
 
@@ -182,30 +177,29 @@ exports['globalTearDown'] = function(test, assert) {
 
 For more examples please check the `example/` folder, and the `test/run.sh` script.
 
-# Build status
+## Build status
 
 [![Build Status](https://secure.travis-ci.org/cloudkick/whiskey.png)](http://travis-ci.org/cloudkick/whiskey)
 
-Running Whiskey test suite
-==========================
+## Running Whiskey test suite
 
 To run the Whiskey test suite, run the following command in the repository root
 directory.
 
-`npm test`
+```bash
+npm test
+```
 
 If all the tests have sucessfully passed, the process should exit with a zero
 status code and you should see `* * * Whiskey test suite PASSED. * * *`
 message.
 
-Contributing
-============
+## Contributing
 
 To contribute, fork the repository, create a branch with your changes and open a
 pull request.
 
-Debugging
-=========
+## Debugging
 
 If you want to debug your test, you can use the `--debug` option. This will
 cause Whiskey to start the test process with the V8 debugger attached to it
@@ -219,8 +213,7 @@ cannot use the `--debug` and `--independent-tests` options together.  The
 semantics just don't make any sense.  To debug a test, make sure you invoke it
 with `--tests` instead.
 
-Troubleshooting
-===============
+## Troubleshooting
 
 ### I use `long-stack-straces` module in my own code and all of the tests get reported as succeeded
 
@@ -257,7 +250,6 @@ the test is reported as "timed out" and the exception is reported as "uncaught".
 The solution for this problem is to run the tests in sequential mode (drop the
 --concurrency option).
 
-License
-=======
+## License
 
 Apache 2.0, for more info see [LICENSE](/cloudkick/whiskey/blob/master/LICENSE).

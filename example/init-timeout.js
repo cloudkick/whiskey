@@ -15,5 +15,5 @@
  * limitations under the License.
  */
 
-exports['init'] = function(callback) {
+exports['initialize'] = function(callback) {
 };

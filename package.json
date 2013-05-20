@@ -1,7 +1,7 @@
 {
   "name": "whiskey",
   "description": "A simple test runner for NodeJS applications.",
-  "version": "0.7.1",
+  "version": "0.8.0-alpha",
   "author": "Cloudkick, Inc. <tomaz+npm@cloudkick.com> http://www.cloudkick.com",
   "keywords": [ "whiskey", "tests", "test runner", "testing", "tdd", "coverage", "test coverage"],
   "homepage": "https://github.com/cloudkick/whiskey",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "sprintf": ">= 0.1.1",
-    "async": ">= 0.1.18",
+    "async": ">= 0.1.22",
     "magic-templates": "= 0.1.1",
     "rimraf": "= 1.0.1",
     "terminal": "= 0.1.3",

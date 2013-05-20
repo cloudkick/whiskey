@@ -1,5 +1,44 @@
 # Changes
 
+## v0.8.0
+
+* Make Whiskey behave more like other test runners and run `setUp` and
+  `tearDown` function before and after every test run instead of running it once
+  per test file.
+
+  Note: This change is breaking and backward incompatible. If you want to
+  preserve old behavior, you need to migrate to a new `initialize` and `finalize`
+  function. Those two functions behave the same as way `setUp` and `tearDown`
+  did in older versions.
+
+Old code (pre 0.8.0):
+
+```javascript
+exports['setUp'] = function(test, assert) {
+  // load database fixtures
+  test.finish();
+};
+
+exports['tearDown'] = function(test, assert) {
+  // clear database
+  test.finish();
+};
+```
+
+New code (to preserve the old behavior, post 0.8.0):
+
+```javascript
+exports['initialize'] = function(test, assert) {
+  // load database fixtures
+  test.finish();
+};
+
+exports['finalize'] = function(test, assert) {
+  // clear database
+  test.finish();
+};
+```
+
 ## v0.7.1 (07.05.2013)
 
 * Correctly report exception if a test throws a string.
@@ -18,7 +57,7 @@
 
 ## v0.6.12 (18.02.2013)
 
-* Add support for spying on the arguments with which a function has been 
+* Add support for spying on the arguments with which a function has been
   called.
 
   [Michael Bird]
