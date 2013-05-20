@@ -1,6 +1,6 @@
 # Changes
 
-## v0.8.0
+## v0.8.0 (20.05.2013)
 
 * Make Whiskey behave more like other test runners and run `setUp` and
   `tearDown` function before and after every test run instead of running it once
