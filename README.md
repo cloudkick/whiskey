@@ -71,7 +71,7 @@ npm install whiskey
  * **--scope-leaks** - Record which variables were leaked into a global scope
  * **--scope-leaks-reporter [cli]** - Which scope leak reporter to use (defaults
    to cli)
- * **--debug [NUMBER]** - Attach a debugger to a test process, and optionally specify port number
+ * **--debug NUMBER** - Attach a debugger to a test process listening on the specified port number
  * **--report-timing** - Report each test run time
  * **--dependencies STRING** - Specify path to the dependencies file for the
    process runner. More information about the process runner can be found at
