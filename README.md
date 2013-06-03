@@ -202,8 +202,9 @@ pull request.
 ## Debugging
 
 If you want to debug your test, you can use the `--debug` option. This will
-cause Whiskey to start the test process with the V8 debugger functionality. You
-then need to start up your own debugger (i.e. node-inspector).
+cause Whiskey to start the test process with the V8 debugger functionality.
+You then need to manually connect to the debugger to control it (i.e. using
+node repl or [node-inspector](https://github.com/dannycoates/node-inspector)).
 
 Whiskey will also by default set a breakpoint at the beginning of your test
 file.
