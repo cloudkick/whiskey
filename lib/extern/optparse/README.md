@@ -12,7 +12,7 @@ QUICK START
 The library defines one class, the OptionParser class. The class constructor takes one single argument, a list with a set of rules. Here is a quick example:
 
 	// Import the sys library
-	var util = require('util');
+	var sys = require('sys');
 
 	// Import the optparse library.
 	var optparse = require('optparse');
@@ -29,7 +29,7 @@ The library defines one class, the OptionParser class. The class constructor tak
 	// Hook the help option. The callback will be executed when the OptionParser 
 	// hits the switch ´´-h´´ or ´´--help´´. Each representatio
 	parser.on('help', function() {
-		util.puts('Help');
+		sys.puts('Help');
 	});
 	
 
@@ -90,9 +90,11 @@ Add's a callback for a switch or an argument (defined by index). Switch hooks MU
 		// Show help section
 	});
 	
-And this example show how to hook an argument (an option without the leading - or --): 
+And this example show how to hook a positional argument (an option without the leading - or --).
+Note that positional argument 0 will be "node" and positional argument 1 will be the path of the
+script being run. Positional argument 2 will be the first positional argument after the script path: 
 
-	parser.on(0, function(opt) {
+	parser.on(2, function(opt) {
 		puts('The first non-switch option is:' +  opt);
 	});
 	

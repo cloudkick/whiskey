@@ -71,7 +71,7 @@ npm install whiskey
  * **--scope-leaks** - Record which variables were leaked into a global scope
  * **--scope-leaks-reporter [cli]** - Which scope leak reporter to use (defaults
    to cli)
- * **--debug** - Attach a Node debugger to the test process
+ * **--debug [NUMBER]** - Attach a debugger to a test process, and optionally specify port number
  * **--report-timing** - Report each test run time
  * **--dependencies STRING** - Specify path to the dependencies file for the
    process runner. More information about the process runner can be found at
@@ -202,8 +202,8 @@ pull request.
 ## Debugging
 
 If you want to debug your test, you can use the `--debug` option. This will
-cause Whiskey to start the test process with the V8 debugger attached to it
-and put you into the Node debugger prompt.
+cause Whiskey to start the test process with the V8 debugger functionality. You
+then need to start up your own debugger (i.e. node-inspector).
 
 Whiskey will also by default set a breakpoint at the beginning of your test
 file.
