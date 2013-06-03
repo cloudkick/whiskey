@@ -1,11 +1,17 @@
 # Changes
 
-## in development
+## v0.8.2 (03.06.2013)
 
 * Remove old and obsolete _debugger module, allow user to specify debugger
   listen port using `--debug` option and print the port to console. #54
 
-## v0.8.0 (20.05.2013)
+  [Chase Douglas]
+
+## v0.8.1-alpha (20.05.2013)
+
+* Correctly log cmd string in the process runner.
+
+## v0.8.0-alpha (20.05.2013)
 
 * Make Whiskey behave more like other test runners and run `setUp` and
   `tearDown` function before and after every test run instead of running it once
