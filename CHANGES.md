@@ -1,5 +1,10 @@
 # Changes
 
+## in development
+
+* Remove old and obsolete _debugger module, allow user to specify debugger
+  listen port using `--debug` option and print the port to console. #54
+
 ## v0.8.0 (20.05.2013)
 
 * Make Whiskey behave more like other test runners and run `setUp` and
