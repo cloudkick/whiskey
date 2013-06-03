@@ -3,6 +3,10 @@
     "author": "Johan Dahlberg",
     "description": "Command-line option parser",
     "keywords": ["option", "parser", "command-line", "cli", "terminal"],
-    "version": "1.0.1",
+    "version": "1.0.4",
+    "repository": {
+         "type": "git",
+         "url": "git://github.com/jfd/optparse-js.git"
+     },
     "main": "./lib/optparse"
 }
