@@ -15,34 +15,18 @@
  * limitations under the License.
  */
 
-var i = 0;
-var called = false;
-var n = 0;
-
-exports['not_called'] = function(test, assert) {
-  assert.ok(false);
-  test.finish();
-};
-
 exports['setUp'] = function(test, assert) {
-  i = 9;
-  called = true;
-  n++;
   test.finish();
 };
 
 exports['test_indexOf'] = function(test, assert) {
-  assert.ok(called);
   assert.equal('test'.indexOf('test'), 0);
   setTimeout(function() {
-    n++;
     test.finish();
   }, 50);
 };
 
 exports['test_throw'] = function(test, assert) {
-  assert.ok(called);
-
   try {
     throw new Error('test');
   }
@@ -50,13 +34,9 @@ exports['test_throw'] = function(test, assert) {
     assert.ok(err);
   }
 
-  n++;
   test.finish();
 };
 
 exports['tearDown'] = function(test, assert) {
-  assert.ok(called);
-  assert.equal(n, 3);
-
   test.finish();
 };

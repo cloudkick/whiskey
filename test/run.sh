@@ -4,6 +4,7 @@ CWD=`cd "$APP_DIR";pwd`
 W="${CWD}/bin/whiskey"
 E="${CWD}/example"
 ANY_SUITE="--tests $E/test-skipped.js"
+echo $ANY_SUITE
 
 $W -g ./example/global-setup.js ${ANY_SUITE} >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
@@ -431,6 +432,20 @@ if [ $? -ne 4 ]; then
     exit 1
 fi
 
+"${CWD}/bin/whiskey" --timeout 1000 \
+--tests "${CWD}/example/test-initialize-and-finalize-function.js"
+
+if [ $? -ne 0 ]; then
+    echo "test should have passed."
+    exit 1
+fi
+
+$W --tests "$E/test-throw-string.js"
+
+if [ $? -ne 2 ]; then
+    echo "2 tests should have failed"
+    exit 1
+fi
 
 echo ""
 echo "* * * Whiskey test suite PASSED. * * *"
