@@ -21,10 +21,6 @@ service / process dependencies easier.
 * Integration with node debugger
 * Support for generating Makefiles with different Whiskey targets
 
-## Non NPM-installable Dependencies
-
-* [node-jscoverage](https://github.com/Kami/node-jscoverage) (only required if `--coverage` option is used)
-
 ## Changes
 
 For changes please see [CHANGES.md](/cloudkick/whiskey/blob/master/CHANGES.md) file.
