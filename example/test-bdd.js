@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-var bdd = require('../lib-cov/bdd').init(exports);
+var bdd = require('../lib/bdd').init(exports);
 var describe = bdd.describe;
 var beforeEach = bdd.beforeEach;
 
