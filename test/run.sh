@@ -337,15 +337,11 @@ if [ $? -ne 0 ]; then
 fi
 
 # Verify that coverage works properly
-if [ "$(which jscoverage)" ]; then
-  "$E/test-jscoverage.js"
+"$E/test-coverage.js"
 
-  if [ $? -ne 0 ]; then
-      echo "coverage does not work properly"
-      exit 1
-  fi
-else
-  echo 'jscoverage not installed, skipping coverage tests'
+if [ $? -ne 0 ]; then
+    echo "coverage does not work properly"
+    exit 1
 fi
 
 # Make sure that the child which blocks after call .finish() is killed and
