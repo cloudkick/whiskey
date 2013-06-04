@@ -265,10 +265,19 @@ if [ $? -ne 1 ]; then
     exit 1
 fi
 
+# Test with full absolute path
 $W --tests "$E/test-chdir.js" --chdir "$E/"
 
 if [ $? -ne 0 ]; then
     echo "tests should pass y"
+    exit 1
+fi
+
+# Test with relative path
+$W --tests "$E/test-chdir.js" --chdir "example/"
+
+if [ $? -ne 0 ]; then
+    echo "tests should pass y1"
     exit 1
 fi
 
