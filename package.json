@@ -26,7 +26,8 @@
     "gex": "= 0.0.1",
     "simplesets": "= 1.1.6",
     "logmagic": "= 0.1.4",
-    "underscore": ">= 1.4.2"
+    "underscore": ">= 1.4.2",
+    "istanbul": ">= 0.1.36"
   },
   "engines": {
     "node": ">= 0.4.0"
