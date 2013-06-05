@@ -1,6 +1,6 @@
 # Changes
 
-## in development
+## 0.8.3 (05.06.2013)
 
 * If user passes in `--chdir` option, always resolve it to a full absolute
   path.
