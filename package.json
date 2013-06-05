@@ -3,6 +3,32 @@
   "description": "A simple test runner for NodeJS applications.",
   "version": "0.8.2",
   "author": "Cloudkick, Inc. <tomaz+npm@cloudkick.com> http://www.cloudkick.com",
+  "contributors": [
+      {
+        "name": "Tomaz Muraus",
+        "email": "tomaz+npm@tomaz.me",
+        "url": "http://www.tomaz.me"
+      },
+      {
+        "name": "Russell Haering",
+        "email": "russellhaering@gmail.com",
+        "url": "http://russellhaering.com"
+      },
+      {
+        "name": "Bjorn Tipling",
+        "email": "bjorn@ambientchill.com",
+        "url": "http://bjorn.tipling.com"
+      },
+      {
+        "name": "Robert Chiniquy",
+        "email": "rchiniquy@yahoo.com",
+        "url": "http://robert-chiniquy.github.io"
+      },
+      {
+        "name": "Sam Falvo",
+        "email": "sam.falvo@rackspace.com"
+      }
+  ],
   "keywords": [ "whiskey", "tests", "test runner", "testing", "tdd", "coverage", "test coverage"],
   "homepage": "https://github.com/cloudkick/whiskey",
   "repository": {
