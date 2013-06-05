@@ -5,6 +5,11 @@
 * If user passes in `--chdir` option, always resolve it to a full absolute
   path.
 
+* Modify code coverage instrumentation layer to use istanbul instead of
+ jscoverage. #55
+
+ [Sam Falvo]
+
 ## v0.8.2 (03.06.2013)
 
 * Remove old and obsolete _debugger module, allow user to specify debugger
