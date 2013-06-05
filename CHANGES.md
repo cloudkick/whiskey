@@ -1,5 +1,10 @@
 # Changes
 
+## in development
+
+* If user passes in `--chdir` option, always resolve it to a full absolute
+  path.
+
 ## v0.8.2 (03.06.2013)
 
 * Remove old and obsolete _debugger module, allow user to specify debugger
