@@ -82,11 +82,12 @@ for example: `whiskey --tests "tests/a.js tests/b.js tests/c.js"`
 ## A Note about setUp and tearDown
 
 Presently, two kinds of setup and teardown procedures exist with Whiskey.
-setUp and tearDown work on a per-suite basis; that is, Whiskey invokes setUp
-prior to running _all_ tests in a given Javascript file, called a suite, and
-invokes tearDown after all tests in that file have been exhausted.  If you run
-multiple suites in parallel (e.g., via the -T/--independent-tests option),
-you'll get concurrent execution of setups and teardowns as well.
+setUp and tearDown work on a per-test basis; that is, Whiskey invokes setUp
+before running a test in a given Javascript file, called a suite and tearDown
+is invoked after a test run has finished.
+If you run multiple suites in parallel (e.g., via the
+-T/--independent-tests option), you'll get concurrent execution of setups and
+teardowns as well.
 
 Sometimes, though, you need longer-lived environmental configurations, or you
 need safe resource sharing between entire batches of independently running
@@ -94,7 +95,6 @@ tests. For these, you'll want to use globalSetUp and globalTearDown.
 
  * When do I use setUp / tearDown?
    * When a suite's runtime environment **does not** influence other running suites.
-   * **Example:** . . .
  * When do I use globalSetUp / globalTearDown ?
    * When a suite's runtime environment **can potentially** interfere with other, concurrently running suites.
    * **Example:** Attempting to run multiple suites in parallel which rely on a Cassandra schema being in place, and each attempting to reset the schema to a known state on a single Cassandra instance, you'll get Cassandra schema version errors.  Using globalSetUp prevents this by running the schema reset code exactly once for _all_ tests.
