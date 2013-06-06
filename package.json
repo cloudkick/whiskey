@@ -41,6 +41,7 @@
     "bin": "./bin"
   },
   "scripts": {
+    "lint": "./scripts/lint.sh",
     "test": "make test"
   },
   "dependencies": {
