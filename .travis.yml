@@ -6,7 +6,8 @@ node_js:
   - 0.10
 
 script:
-  - make test
+  - npm run-script lint
+  - npm run-script test
 
 notifications:
   email:
