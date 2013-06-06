@@ -14,5 +14,6 @@
     "evil"          : true,
     "onecase"       : true,
     "strict"        : false,
+    "loopfunc"      : true,
     "globals": {"__coverage__": false}
 }
