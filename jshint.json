@@ -12,7 +12,7 @@
     "white"         : false,
     "sub"           : true,
     "evil"          : true,
-    "es5"           : true,
     "onecase"       : true,
-    "strict"        : false
+    "strict"        : false,
+    "globals": {"__coverage__": false}
 }
