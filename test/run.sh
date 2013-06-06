@@ -388,7 +388,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-$W --timeout 1000 \
+$W --timeout 3000 \
  --tests "$E/test-custom-assert-methods.js"
 
 if [ $? -ne 0 ]; then
