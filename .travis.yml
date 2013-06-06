@@ -2,8 +2,10 @@ language: node_js
 
 node_js:
   - 0.6
+  - 0.8
 
-script: make test
+script:
+  - make test
 
 notifications:
   email:
