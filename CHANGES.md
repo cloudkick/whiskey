@@ -1,5 +1,10 @@
 # Changes
 
+## 0.8.4 - in development
+
+* Fix global setup and teardown functionality so it works correctly if those
+  procedures or the actual tests are asynchronous.
+
 ## 0.8.3 (05.06.2013)
 
 * If user passes in `--chdir` option, always resolve it to a full absolute
