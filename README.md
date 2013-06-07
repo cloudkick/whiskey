@@ -23,7 +23,7 @@ service / process dependencies easier.
 
 ## Changes
 
-For changes please see [CHANGES.md](/cloudkick/whiskey/blob/master/CHANGES.md) file.
+For changes please see [CHANGES.md](https://github.com/cloudkick/whiskey/blob/master/CHANGES.md) file.
 
 ## Installation
 
