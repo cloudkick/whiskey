@@ -101,7 +101,3 @@ Command line tool can be used for:
 ### Start some processes defined in the configuration file
 
 `whiskey-process-runner --configuration [file.json] --run --names process1,process2`
-
-### TODO
-
-* Command line option for interactively generating configuration file
