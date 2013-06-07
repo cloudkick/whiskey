@@ -71,7 +71,7 @@ npm install whiskey
  * **--report-timing** - Report each test run time
  * **--dependencies STRING** - Specify path to the dependencies file for the
    process runner. More information about the process runner can be found at
-   [PROCESS_RUNNER.md](/cloudkick/whiskey/blob/master/PROCESS_RUNNER.md)
+   [PROCESS_RUNNER.md](https://github.com/cloudkick/whiskey/blob/master/PROCESS_RUNNER.md)
  * **--only-essential-dependencies** - Only start dependencies required by the tests
    files which are ran. This option is only applicable if `--dependencies` option
    is used.
