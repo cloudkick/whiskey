@@ -57,6 +57,8 @@ Example configuration file:
   (defaults to `cwd/<process_name>.log`)
 * `wait_for` - Condition which must be met before the process is considered as
   started (defaults to `none`).
+* `kill_script` - path to the shell script which will be executed instead of
+  sending `SIGKILL` signal to the managed process when stopping it.
 * `timeout` - how long to wait for process to start (in ms) before erroring
    out (defaults to 10 seconds).
 * `depends` - Array of names of process dependencies. Name must match some other
