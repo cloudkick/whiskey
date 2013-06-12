@@ -36,6 +36,7 @@ logmagic.route('whiskey.process_runner.*', logmagic.INFO, 'process_runner');
 whiskey.run(cwd, argv);
 
 process.on('uncaughtException', function(err) {
+  console.log("** UNCAUGHT EXCEPTION IN PARENT PROCESS **");
   console.log(err.message);
 
   if (err.stack) {
