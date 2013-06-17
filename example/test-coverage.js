@@ -20,5 +20,9 @@ exec(sprintf('%s/bin/whiskey --tests %s/example/test-success-with-coverage.js --
       process.exit(5);
     }
 
+    if (err && err.code !== 0) {
+      process.exit(5);
+    }
+
     process.exit(0);
 });
