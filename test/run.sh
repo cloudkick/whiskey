@@ -4,7 +4,11 @@ CWD=`cd "$APP_DIR";pwd`
 W="${CWD}/bin/whiskey"
 E="${CWD}/example"
 ANY_SUITE="--tests $E/test-skipped.js"
-echo $ANY_SUITE
+
+if [ ! -d "node_modules" ]; then
+  echo "Missing node_modules/, please run npm install ."
+  exit 1
+fi
 
 $W -g ./example/global-setup.js ${ANY_SUITE} >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
