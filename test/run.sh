@@ -10,6 +10,16 @@ if [ ! -d "node_modules" ]; then
   exit 1
 fi
 
+echo " _____________________________"
+echo "< Starting Whiskey test suite >"
+echo " -----------------------------"
+echo "        \   ^__^"
+echo "         \  (oo)\_______"
+echo "            (__)\       )\/"
+echo "                ||----w |"
+echo "                ||     ||"
+sleep 0.5
+
 $W -g ./example/global-setup.js ${ANY_SUITE} >/tmp/output 2>&1
 if [ $? -ne 0 ]; then
     echo "-g/--global-setup-teardown must base its paths from the invoking CWD"
