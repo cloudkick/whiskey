@@ -11,12 +11,16 @@ exec(sprintf('NODE_PATH=lib-cov %s/bin/whiskey --tests %s/example/test-success-w
   function(err, stdout, stderr) {
     try {
       assert.match(stdout, /test coverage/i);
-      assert.match(stdout, /coverage\.js/);
+      assert.match(stdout, /coverage\.js\s+\|\s+\d+/);
       assert.match(stdout, /loc/i);
       assert.match(stdout, /sloc/i);
       assert.match(stdout, /missed/i);
     }
     catch (err2) {
+      process.exit(5);
+    }
+
+    if (err && err.code !== 0) {
       process.exit(5);
     }
 
