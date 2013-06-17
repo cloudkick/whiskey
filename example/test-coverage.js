@@ -20,5 +20,9 @@ exec(sprintf('NODE_PATH=lib-cov %s/bin/whiskey --tests %s/example/test-success-w
       process.exit(5);
     }
 
+    if (err && err.code !== 0) {
+      process.exit(5);
+    }
+
     process.exit(0);
 });
