@@ -453,5 +453,13 @@ if [ $? -ne 2 ]; then
 fi
 
 echo ""
-echo "* * * Whiskey test suite PASSED. * * *"
+echo " ___________________________"
+echo "< Whiskey test suite PASSED >"
+echo " ---------------------------"
+echo "        \   ^__^"
+echo "         \  (oo)\_______"
+echo "            (__)\       )\/"
+echo "                ||----w |"
+echo "                ||     ||"
+echo ""
 exit 0
