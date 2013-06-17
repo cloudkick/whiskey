@@ -7,7 +7,7 @@ var sprintf = require('sprintf').sprintf;
 
 var cwd = process.cwd();
 
-exec(sprintf('NODE_PATH=lib-cov %s/bin/whiskey --tests %s/example/test-success-with-coverage.js --timeout 6000 --coverage --coverage-reporter cli', cwd, cwd),
+exec(sprintf('%s/bin/whiskey --tests %s/example/test-success-with-coverage.js --timeout 6000 --coverage --coverage-reporter cli', cwd, cwd),
   function(err, stdout, stderr) {
     try {
       assert.match(stdout, /test coverage/i);
