@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
+var coverage = require('../lib/coverage');
+
 exports['test_coverage_file_coverage'] = function(test, assert) {
-  require('coverage');
   assert.ok(true);
   test.finish();
 };
