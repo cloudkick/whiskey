@@ -1,9 +1,11 @@
 # Changes
 
-## 0.8.4 - in development
+## 0.8.4 (13.08.2013)
 
 * Fix global setup and teardown functionality so it works correctly if those
   procedures or the actual tests are asynchronous.
+
+* Update instanbul code coverage integration to use --complete-copy option.
 
 ## 0.8.3 (05.06.2013)
 
