@@ -20,7 +20,15 @@ echo "                ||----w |"
 echo "                ||     ||"
 sleep 0.5
 
+$W > /tmp/output 2>&1
+
+if [ $? -ne 2 ]; then
+  echo "Invalid usage, but didn't exit with non-zero"
+  exit 1
+fi
+
 $W -g ./example/global-setup.js ${ANY_SUITE} >/tmp/output 2>&1
+
 if [ $? -ne 0 ]; then
     echo "-g/--global-setup-teardown must base its paths from the invoking CWD"
     exit 1
