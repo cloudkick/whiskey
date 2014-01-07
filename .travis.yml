@@ -5,6 +5,9 @@ node_js:
   - 0.8
   - 0.10
 
+before_install:
+  - npm conf set strict-ssl false
+
 script:
   - npm run-script lint
   - npm run-script test
